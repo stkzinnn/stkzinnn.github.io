@@ -222,7 +222,8 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 #contacto { text-align:center; }
 .contact-card { max-width:580px; margin:0 auto; background:var(--surface); border:1px solid var(--border); border-radius:24px; padding:48px 44px; position:relative; overflow:hidden; }
 .contact-card::before { content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:280px; height:280px; background:radial-gradient(circle,rgba(108,99,255,.18) 0%,transparent 70%); pointer-events:none; }
-.contact-email { font-size:22px; font-weight:800; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:6px; letter-spacing:-.02em; }
+.contact-email { font-size:22px; font-weight:800; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:6px; letter-spacing:-.02em; text-decoration:none; cursor:pointer; display:inline-block; transition:opacity .2s; }
+.contact-email:hover { opacity:.8; }
 .contact-sub { font-size:13px; color:var(--muted); margin-bottom:32px; }
 .contact-links { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
 .contact-link { display:inline-flex; align-items:center; gap:7px; padding:12px 22px; border-radius:10px; font-size:12.5px; font-weight:600; text-decoration:none; transition:all .2s; }
@@ -712,7 +713,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
           <div class="projeto-open">→</div>
         </div>
         <div class="projeto-title">GestoDocente</div>
-        <div class="projeto-desc">Aplicação desktop para gestão de dados docentes com arquitectura MVVM limpa e separação total de responsabilidades.</div>
+        <div class="projeto-desc">Aplicação desktop para gestão de dados docentes com arquitetura MVVM limpa e separação total de responsabilidades.</div>
         <div class="projeto-tags">
           <span class="ptag pink">C#/.NET</span><span class="ptag pink">WPF</span><span class="ptag">MVVM</span>
         </div>
@@ -768,7 +769,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     <div class="ia-category reveal">
       <div class="ia-cat-label">✦ Produtividade & Pesquisa</div>
       <div class="ia-grid">
-        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">🧠</div><div class="ia-name">Claude</div><span class="ia-badge-principal">⭐ N.º 1</span></div><div class="ia-sub">O Melhor para Raciocínio Complexo</div><div class="ia-why-label">Por que é o melhor</div><div class="ia-why">O que me impressiona no Claude é a forma como raciocina. Quando tenho um problema difícil de arquitectura, uma refatoração complicada ou simplesmente preciso de perceber <em>porque</em> algo não funciona, é aqui que vou primeiro. Não dá só uma resposta, pensa com contexto.</div></div>
+        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">🧠</div><div class="ia-name">Claude</div><span class="ia-badge-principal">⭐ N.º 1</span></div><div class="ia-sub">O Melhor para Raciocínio Complexo</div><div class="ia-why-label">Por que é o melhor</div><div class="ia-why">O que me impressiona no Claude é a forma como raciocina. Quando tenho um problema difícil de arquitetura, uma refatoração complicada ou simplesmente preciso de perceber <em>porque</em> algo não funciona, é aqui que vou primeiro. Não dá só uma resposta, pensa com contexto.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">✨</div><div class="ia-name">Gemini</div></div><div class="ia-sub">Pesquisa & Assistente Diário</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Assistente versátil para pesquisa geral, resumos rápidos e tarefas do dia-a-dia que precisam de uma resposta imediata.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">💬</div><div class="ia-name">ChatGPT</div></div><div class="ia-sub">Pesquisa & Exploração</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Uso em conjunto com o Gemini para obter perspetivas complementares em pesquisas e exploração de soluções técnicas.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">📓</div><div class="ia-name">NotebookLM</div></div><div class="ia-sub">Gestão de Conhecimento</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Transforma documentação técnica e notas em resumos interativos, ótimo para estudar novas tecnologias.</div></div>
@@ -822,7 +823,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     <div class="section-eyebrow reveal">Vamos falar</div>
     <h2 class="section-title reveal">Pronto para o próximo passo</h2>
     <div class="contact-card reveal">
-      <div class="contact-email">adrianoribeiro2554@gmail.com</div>
+      <a href="mailto:adrianoribeiro2554@gmail.com" class="contact-email">adrianoribeiro2554@gmail.com</a>
       <p class="contact-sub">Ou encontra-me nas redes profissionais</p>
       <div class="contact-links">
         <a href="mailto:adrianoribeiro2554@gmail.com" class="contact-link primary">✉ Enviar email</a>
@@ -1023,7 +1024,7 @@ const PROJECTS = {
     screenshots:['sbr-login.jpg','sbr-rota.jpg','sbr-comunidade.jpg','sbr-recentes.jpg','sbr-perfil.jpg','sbr-stats.jpg'],
     tags:[{l:'React Native',c:'purple'},{l:'TypeScript',c:'purple'},{l:'FastAPI',c:'cyan'},{l:'PostgreSQL',c:'cyan'},{l:'PostGIS',c:'cyan'},{l:'pgRouting',c:'cyan'},{l:'OpenStreetMap',c:'purple'},{l:'Expo',c:'purple'}],
     description:`Projeto de final de curso desenvolvido individualmente de raiz. Uma aplicação móvel completa de routing ciclável inteligente que usa dados reais do OpenStreetMap de Vila Real para calcular rotas personalizadas por perfil de ciclista, <strong>lazer, exercício ou commuter</strong>.\n\nCada perfil tem pesos diferentes no algoritmo de routing: o ciclista de lazer prefere rotas mais planas e bonitas; o de exercício privilegia subidas e distância; o commuter quer o caminho mais rápido.\n\nAlém do routing, a app tem um <strong>módulo social completo</strong> com feed de rotas partilhadas, likes, comentários, seguidores, notificações e estatísticas pessoais detalhadas. Integra 4 APIs externas: OpenWeatherMap, OpenTopography, Nominatim e OSM Overpass.`,
-    challenge:`Construir um sistema de routing geoespacial real sobre grafos OSM com dezenas de milhares de nós, garantindo que as rotas variassem dinamicamente consoante o perfil do ciclista e as condições meteorológicas, sem que o tempo de resposta fosse inaceitável para uma app móvel.`,
+    challenge:`Construir um sistema de routing geoespacial real sobre grafos OSM com dezenas de milhares de nós, garante que as rotas variem dinamicamente consoante o perfil do ciclista e as condições meteorológicas, sem que o tempo de resposta fosse inaceitável para uma app móvel.`,
     solution:`Pipeline FastAPI + PostGIS + pgRouting com algoritmo Dijkstra/A* e sistema de pesos dinâmicos por perfil. O grafo OSM é pré-processado e indexado no PostGIS para queries espaciais rápidas. Integração meteorológica ajusta os pesos em tempo real. Autenticação JWT com refresh tokens e arquitetura modular escalável.`
   },
   dist: {
@@ -1040,13 +1041,13 @@ const PROJECTS = {
   gesto: {
     badge:'📋 Desktop App', badgeBg:'rgba(255,107,157,.1)', badgeColor:'#f9a8c9', badgeBorder:'rgba(255,107,157,.25)',
     title:'GestoDocente',
-    tagline:'Gestão de dados docentes em arquitectura MVVM',
+    tagline:'Gestão de dados docentes em arquitetura MVVM',
     github:'https://github.com/stkzinnn/GestoDocente',
     previewType:'desktop',
     tags:[{l:'C#/.NET',c:'pink'},{l:'WPF',c:'pink'},{l:'MVVM',c:'purple'},{l:'Desktop',c:'purple'}],
-    description:`Aplicação desktop para gestão centralizada de informação docente desenvolvida em WPF com <strong>arquitectura MVVM</strong>. Permite gerir docentes, turmas, horários e relatórios numa interface moderna e responsiva para desktop Windows.\n\nO foco principal do projeto foi demonstrar uma arquitectura de software limpa e escalável, não apenas "fazer funcionar", mas fazê-lo da forma certa, com <strong>separação clara de responsabilidades</strong> e código que qualquer developer pode pegar e entender.`,
+    description:`Aplicação desktop para gestão centralizada de informação docente desenvolvida em WPF com <strong>arquitetura MVVM</strong>. Permite gerir docentes, turmas, horários e relatórios numa interface moderna e responsiva para desktop Windows.\n\nO foco principal do projeto foi demonstrar uma arquitetura de software limpa e escalável, não apenas "fazer funcionar", mas fazê-lo da forma certa, com <strong>separação clara de responsabilidades</strong> e código que qualquer developer pode pegar e entender.`,
     challenge:`Criar uma interface desktop rica e interativa que fosse ao mesmo tempo fácil de usar e preparada para crescer, sem transformar o código numa teia impossível de manter à medida que as funcionalidades aumentam.`,
-    solution:`Arquitectura MVVM com separação total entre View (XAML), ViewModel (lógica de apresentação) e Model (dados e regras de negócio). Data binding bidirecional com INotifyPropertyChanged para UI reativa sem código imperativo. Interfaces e injeção de dependências para desacoplar completamente as camadas.`
+    solution:`Arquitetura MVVM com separação total entre View (XAML), ViewModel (lógica de apresentação) e Model (dados e regras de negócio). Data binding bidirecional com INotifyPropertyChanged para UI reativa sem código imperativo. Interfaces e injeção de dependências para desacoplar completamente as camadas.`
   },
   bomberman: {
     badge:'🎮 WebGL Game', badgeBg:'rgba(52,211,153,.1)', badgeColor:'#6ee7b7', badgeBorder:'rgba(52,211,153,.25)',
