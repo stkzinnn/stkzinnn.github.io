@@ -185,9 +185,10 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .ia-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); opacity:0; transition:opacity .3s; }
 .ia-card:hover { border-color:rgba(108,99,255,.4); transform:translateY(-3px); }
 .ia-card:hover::before { opacity:1; }
-.ia-card.featured { background:linear-gradient(135deg,rgba(108,99,255,.12) 0%,rgba(0,212,255,.06) 100%); border-color:rgba(108,99,255,.45); box-shadow:0 0 24px rgba(108,99,255,.18); }
-.ia-card.featured::before { opacity:1; }
-.ia-card.featured:hover { border-color:rgba(108,99,255,.7); box-shadow:0 4px 32px rgba(108,99,255,.3); }
+.ia-card.featured { background:linear-gradient(135deg,rgba(108,99,255,.18) 0%,rgba(0,212,255,.1) 100%); border-color:rgba(108,99,255,.7); box-shadow:0 0 0 1px rgba(108,99,255,.3), 0 8px 32px rgba(108,99,255,.25); }
+.ia-card.featured::before { opacity:1; height:3px; }
+.ia-card.featured .ia-name { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:15px; }
+.ia-card.featured:hover { border-color:rgba(108,99,255,.9); box-shadow:0 0 0 1px rgba(108,99,255,.5), 0 12px 40px rgba(108,99,255,.4); transform:translateY(-4px); }
 .ia-card-header { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
 .ia-icon { font-size:22px; }
 .ia-name { font-size:13.5px; font-weight:700; color:#fff; }
@@ -767,7 +768,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     <div class="ia-category reveal">
       <div class="ia-cat-label">✦ Produtividade & Pesquisa</div>
       <div class="ia-grid">
-        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">🧠</div><div class="ia-name">Claude</div><span class="ia-badge-principal">⭐ Principal</span></div><div class="ia-sub">Raciocínio de Alta Complexidade</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">A minha ferramenta principal para refatoração de código complexo, arquitectura de sistemas e problemas que exigem raciocínio profundo e contextual.</div></div>
+        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">🧠</div><div class="ia-name">Claude</div><span class="ia-badge-principal">⭐ N.º 1</span></div><div class="ia-sub">O Melhor para Raciocínio Complexo</div><div class="ia-why-label">Por que é o melhor</div><div class="ia-why">O que me impressiona no Claude é a forma como raciocina. Quando tenho um problema difícil de arquitectura, uma refatoração complicada ou simplesmente preciso de perceber <em>porque</em> algo não funciona, é aqui que vou primeiro. Não dá só uma resposta, pensa com contexto.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">✨</div><div class="ia-name">Gemini</div></div><div class="ia-sub">Pesquisa & Assistente Diário</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Assistente versátil para pesquisa geral, resumos rápidos e tarefas do dia-a-dia que precisam de uma resposta imediata.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">💬</div><div class="ia-name">ChatGPT</div></div><div class="ia-sub">Pesquisa & Exploração</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Uso em conjunto com o Gemini para obter perspetivas complementares em pesquisas e exploração de soluções técnicas.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">📓</div><div class="ia-name">NotebookLM</div></div><div class="ia-sub">Gestão de Conhecimento</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Transforma documentação técnica e notas em resumos interativos, ótimo para estudar novas tecnologias.</div></div>
@@ -776,7 +777,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     <div class="ia-category reveal">
       <div class="ia-cat-label">⌨ Desenvolvimento</div>
       <div class="ia-grid">
-        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">⚡</div><div class="ia-name">Claude Code</div><span class="ia-badge-principal">⭐ Principal</span></div><div class="ia-sub">Agente de Codificação no Terminal</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">O meu parceiro principal de programação. Cria, refatora e implementa código diretamente no terminal com contexto completo do projeto, sem sair do editor.</div></div>
+        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">⚡</div><div class="ia-name">Claude Code</div><span class="ia-badge-principal">⭐ N.º 1</span></div><div class="ia-sub">O Agente que Mudou Como Programo</div><div class="ia-why-label">Por que é o melhor</div><div class="ia-why">Não é um autocomplete, é um agente real. Lê o projeto inteiro, percebe o contexto, cria ficheiros, refatora código e executa comandos diretamente no terminal. Desde que comecei a usar, não volto atrás. É o meu parceiro número um.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">🤖</div><div class="ia-name">Codex</div></div><div class="ia-sub">Geração de Código por IA</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Para gerar boilerplate, funções isoladas e snippets rápidos. Útil para explorar padrões de código ou acelerar tarefas repetitivas.</div></div>
         <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">🎨</div><div class="ia-name">Lovable</div></div><div class="ia-sub">Vibe Coding & UI Design</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Para prototipar interfaces rapidamente e transformar ideias em UI funcional sem ter de escrever todo o CSS do zero.</div></div>
       </div>
