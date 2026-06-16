@@ -429,6 +429,15 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 
 .cursor-glow { position:fixed; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle,rgba(108,99,255,.05) 0%,transparent 70%); pointer-events:none; transform:translate(-50%,-50%); z-index:0; transition:left .08s,top .08s; }
 
+/* ══ PARTICLE CANVAS ══ */
+#particles-bg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+/* ══ HERO ROLE CYCLER ══ */
+.hero-roles { display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--muted); margin-bottom:20px; min-height:22px; }
+.hero-role-text { color:var(--accent2); font-weight:600; }
+.hero-role-cursor { display:inline-block; width:2px; height:14px; background:var(--accent2); margin-left:2px; animation:cursor-blink .8s step-end infinite; }
+@keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
 /* ══ RESPONSIVE ══ */
 @media (max-width:900px) {
   .sidebar { transform:translateX(-100%); }
@@ -463,6 +472,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 </head>
 <body>
 
+<canvas id="particles-bg"></canvas>
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- ═══ SIDEBAR ═══ -->
@@ -537,6 +547,11 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     <div class="hero-inner">
       <div>
         <div class="hero-tag">Disponível para novas oportunidades</div>
+        <div class="hero-roles">
+          <span>Sou</span>
+          <span class="hero-role-text" id="heroRole">Full-Stack Developer</span>
+          <span class="hero-role-cursor"></span>
+        </div>
         <h1 class="hero-title">
           Olá, sou o<br>
           <span class="grad">Adriano</span><br>
@@ -835,6 +850,117 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 /* ── cursor glow ── */
 const glow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', e => { glow.style.left = e.clientX+'px'; glow.style.top = e.clientY+'px'; });
+
+/* ════════════════════════════════
+   PARTICLE NETWORK BACKGROUND
+════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('particles-bg');
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [];
+  const mouse = { x: null, y: null };
+  const MAX_DIST = 140, MOUSE_DIST = 180;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.min(Math.floor((W * H) / 14000), 90);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r:  Math.random() * 1.4 + 0.6
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0)  p.x = W;
+      if (p.x > W)  p.x = 0;
+      if (p.y < 0)  p.y = H;
+      if (p.y > H)  p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(140,130,255,0.55)';
+      ctx.fill();
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.22;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(108,99,255,${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+
+      if (mouse.x !== null) {
+        const dx   = particles[i].x - mouse.x;
+        const dy   = particles[i].y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_DIST) {
+          const alpha = (1 - dist / MOUSE_DIST) * 0.5;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+
+  resize();
+  createParticles();
+  draw();
+})();
+
+/* ── hero role cycler ── */
+(function() {
+  const roles = ['Full-Stack Developer', 'Cybersecurity Enthusiast', 'AI Explorer', 'Engenheiro de Software'];
+  const el = document.getElementById('heroRole');
+  if (!el) return;
+  let ri = 0, ci = 0, deleting = false, timer;
+
+  function type() {
+    const target = roles[ri];
+    if (!deleting) {
+      el.textContent = target.slice(0, ++ci);
+      if (ci === target.length) { deleting = true; timer = setTimeout(type, 1800); return; }
+    } else {
+      el.textContent = target.slice(0, --ci);
+      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; timer = setTimeout(type, 300); return; }
+    }
+    timer = setTimeout(type, deleting ? 45 : 80);
+  }
+  setTimeout(type, 800);
+}());
 
 /* ── hamburger ── */
 const hamburger = document.getElementById('hamburger');
