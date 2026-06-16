@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV – Adriano Ribeiro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #E5E7EB;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.cv {
+  width: 210mm;
+  min-height: 297mm;
+  background: #F8F9FB;
+  display: grid;
+  grid-template-columns: 72mm 1fr;
+  box-shadow: 0 20px 80px rgba(0,0,0,.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: #0F1117;
+  color: #E8EAF6;
+  padding: 36px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sidebar-header {
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.photo-wrap {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 14px;
+  border: 2.5px solid #6C63FF;
+  background: #1A1D2E;
+}
+
+.photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.sidebar-name {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.sidebar-role {
+  font-size: 10px;
+  color: #6C63FF;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.sidebar-section-title {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #6C63FF;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(108,99,255,.25);
+}
+
+/* CONTACTO */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 10.5px;
+  color: #9CA3AF;
+  line-height: 1.4;
+}
+
+.contact-icon { font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+
+.contact-item a {
+  color: #9CA3AF;
+  text-decoration: none;
+}
+
+.contact-item a:hover { color: #6C63FF; }
+
+/* SKILLS TAGS */
+.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.stag {
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: rgba(108,99,255,.15);
+  border: 1px solid rgba(108,99,255,.3);
+  color: #a8a3ff;
+}
+
+/* IDIOMAS */
+.lang-item { margin-bottom: 10px; }
+.lang-name { font-size: 10px; font-weight: 600; color: #E8EAF6; margin-bottom: 4px; display: flex; justify-content: space-between; }
+.lang-level { font-size: 9px; color: #6B7094; }
+.lang-bar { height: 3px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
+.lang-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #6C63FF, #00D4FF); }
+
+/* SOFT SKILLS */
+.soft-skill {
+  font-size: 10px;
+  color: #9CA3AF;
+  padding: 4px 0;
+  padding-left: 12px;
+  position: relative;
+}
+
+.soft-skill::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #6C63FF;
+  font-size: 9px;
+}
+
+/* LOCALIZAÇÃO */
+.location-info { font-size: 10.5px; color: #9CA3AF; line-height: 1.7; }
+
+/* ── MAIN ── */
+.main {
+  background: #F8F9FB;
+  padding: 36px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.main-header {
+  padding-bottom: 20px;
+  border-bottom: 2px solid #E5E7EB;
+}
+
+.main-name {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  color: #0F1117;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.main-name span {
+  background: linear-gradient(135deg, #6C63FF, #00D4FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.main-role {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #6B7094;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.section-head {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #6C63FF;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #E5E7EB;
+}
+
+/* PERFIL */
+.perfil-text {
+  font-size: 11.5px;
+  color: #4B5563;
+  line-height: 1.75;
+}
+
+.perfil-text strong { color: #1F2937; }
+
+/* FORMAÇÃO */
+.edu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #F0F1F5;
+}
+
+.edu-left { flex: 1; }
+.edu-degree { font-size: 12.5px; font-weight: 700; color: #1F2937; margin-bottom: 2px; }
+.edu-school { font-size: 10.5px; color: #6B7094; font-weight: 500; }
+.edu-detail { font-size: 10px; color: #9CA3AF; margin-top: 4px; line-height: 1.5; }
+.edu-date {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #6C63FF;
+  background: rgba(108,99,255,.1);
+  border: 1px solid rgba(108,99,255,.2);
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+/* EXPERIÊNCIA */
+.exp-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #F0F1F5;
+}
+
+.exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.exp-title { font-size: 12.5px; font-weight: 700; color: #1F2937; }
+.exp-date-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #6C63FF;
+  background: rgba(108,99,255,.1);
+  border: 1px solid rgba(108,99,255,.2);
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.exp-company { font-size: 10.5px; color: #6B7094; margin-bottom: 8px; font-weight: 500; }
+
+.exp-ul { list-style: none; }
+.exp-ul li {
+  font-size: 10.5px;
+  color: #4B5563;
+  line-height: 1.6;
+  padding-left: 12px;
+  position: relative;
+  margin-bottom: 3px;
+}
+
+.exp-ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #6C63FF;
+  font-size: 9px;
+  top: 1px;
+}
+
+/* PROJETOS */
+.project-cards { display: flex; flex-direction: column; gap: 10px; }
+
+.pc {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 12px 14px;
+  border-left: 3px solid #6C63FF;
+}
+
+.pc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+.pc-name { font-size: 11.5px; font-weight: 700; color: #1F2937; }
+
+.pc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.pc-tag {
+  font-size: 8.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(108,99,255,.08);
+  border: 1px solid rgba(108,99,255,.15);
+  color: #6C63FF;
+}
+
+.pc-desc {
+  font-size: 10px;
+  color: #6B7094;
+  line-height: 1.55;
+}
+
+/* PRINT */
+@media print {
+  body { background: none; padding: 0; }
+  .cv { box-shadow: none; }
+  @page { size: A4; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="cv">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <div class="photo-wrap">
+        <img src="foto.jpg" alt="Adriano Ribeiro">
+      </div>
+      <div class="sidebar-name">Adriano Vilarinho Ribeiro</div>
+      <div class="sidebar-role">Engenheiro de Software</div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div>
+      <div class="sidebar-section-title">Contacto</div>
+      <div class="contact-item">
+        <span class="contact-icon">✉</span>
+        <span>adrianoribeiro2554@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">💼</span>
+        <a href="https://linkedin.com/in/adrianoribeiro-informatic" target="_blank">linkedin.com/in/adrianoribeiro-informatic</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">⌨</span>
+        <a href="https://github.com/stkzinnn" target="_blank">github.com/stkzinnn</a>
+      </div>
+    </div>
+
+    <!-- SKILLS TÉCNICAS -->
+    <div>
+      <div class="sidebar-section-title">Stack Técnico</div>
+      <div class="skill-tags">
+        <span class="stag">TypeScript</span>
+        <span class="stag">Python</span>
+        <span class="stag">C#</span>
+        <span class="stag">SQL</span>
+        <span class="stag">React Native</span>
+        <span class="stag">FastAPI</span>
+        <span class="stag">.NET / WPF</span>
+        <span class="stag">Three.js</span>
+        <span class="stag">PostgreSQL</span>
+        <span class="stag">PostGIS</span>
+        <span class="stag">pgRouting</span>
+        <span class="stag">Git</span>
+        <span class="stag">REST API</span>
+        <span class="stag">JWT</span>
+        <span class="stag">OpenStreetMap</span>
+        <span class="stag">Power BI</span>
+      </div>
+    </div>
+
+    <!-- IDIOMAS -->
+    <div>
+      <div class="sidebar-section-title">Idiomas</div>
+      <div class="lang-item">
+        <div class="lang-name">Português <span class="lang-level">Nativo</span></div>
+        <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Inglês <span class="lang-level">B2 — Fluente</span></div>
+        <div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Espanhol <span class="lang-level">A2 — Básico</span></div>
+        <div class="lang-bar"><div class="lang-fill" style="width:35%"></div></div>
+      </div>
+    </div>
+
+    <!-- SOFT SKILLS -->
+    <div>
+      <div class="sidebar-section-title">Soft Skills</div>
+      <div class="soft-skill">Comunicação com cliente</div>
+      <div class="soft-skill">Resolução de problemas</div>
+      <div class="soft-skill">Trabalho em equipa</div>
+      <div class="soft-skill">Autogestão & autonomia</div>
+      <div class="soft-skill">Aprendizagem rápida</div>
+      <div class="soft-skill">Atenção ao detalhe</div>
+    </div>
+
+    <!-- LOCALIZAÇÃO -->
+    <div>
+      <div class="sidebar-section-title">Localização</div>
+      <div class="location-info">
+        Porto, Portugal<br>
+        Disponível para trabalho híbrido ou presencial.<br>
+        Aberto a relocação.
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="main-header">
+      <div class="main-name">Adriano <span>Ribeiro</span></div>
+      <div class="main-role">Engenheiro de Software · Finalista UTAD 2026</div>
+    </div>
+
+    <!-- PERFIL -->
+    <div>
+      <div class="section-head">Perfil</div>
+      <p class="perfil-text">
+        Finalista em Engenharia Informática na UTAD, com apenas <strong>uma unidade curricular em falta</strong>. Especializado em desenvolvimento full-stack — de APIs geoespaciais em FastAPI/PostGIS a aplicações móveis em React Native. Projeto final: <strong>SmartBikeRoutes</strong>, uma aplicação de routing ciclável inteligente com dados OSM reais, meteorologia em tempo real e rede social integrada. Concilio a vida académica com trabalho a tempo parcial na Endesa há 3 anos, o que reforçou a minha <strong>capacidade de comunicação, negociação e empatia com o utilizador final</strong>.
+      </p>
+    </div>
+
+    <!-- FORMAÇÃO -->
+    <div>
+      <div class="section-head">Formação Académica</div>
+      <div class="edu-item">
+        <div class="edu-left">
+          <div class="edu-degree">Licenciatura em Engenharia Informática</div>
+          <div class="edu-school">UTAD – Universidade de Trás-os-Montes e Alto Douro · Vila Real</div>
+          <div class="edu-detail">Finalista — 1 UC em falta. Projeto final: SmartBikeRoutes (routing geoespacial + social).</div>
+        </div>
+        <div class="edu-date">2022 – 2026</div>
+      </div>
+    </div>
+
+    <!-- EXPERIÊNCIA -->
+    <div>
+      <div class="section-head">Experiência Profissional</div>
+      <div class="exp-item">
+        <div class="exp-top">
+          <div class="exp-title">Sales Specialist</div>
+          <div class="exp-date-tag">2023 – Presente</div>
+        </div>
+        <div class="exp-company">Endesa · Part-time · Porto, Portugal</div>
+        <ul class="exp-ul">
+          <li>Gestão do ciclo completo de aquisição de clientes, da prospeção à proposta personalizada.</li>
+          <li>Desenvolveu forte capacidade de comunicação, negociação e empatia com o utilizador final.</li>
+          <li>Conciliação com carga académica completa durante toda a licenciatura.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJETOS -->
+    <div>
+      <div class="section-head">Projetos</div>
+      <div class="project-cards">
+
+        <div class="pc">
+          <div class="pc-header">
+            <div class="pc-name">🚴 SmartBikeRoutes — Projeto Principal</div>
+            <div class="pc-tags">
+              <span class="pc-tag">React Native</span>
+              <span class="pc-tag">FastAPI</span>
+              <span class="pc-tag">PostGIS</span>
+              <span class="pc-tag">pgRouting</span>
+              <span class="pc-tag">OSM</span>
+            </div>
+          </div>
+          <div class="pc-desc">App móvel de routing ciclável por perfil (lazer/exercício/commuter) com grafos OSM reais, meteorologia em tempo real, elevação, módulo social completo (feed, likes, follows, notificações) e exportação GPX.</div>
+        </div>
+
+        <div class="pc">
+          <div class="pc-header">
+            <div class="pc-name">🌐 Sistema de Monitorização Urbana</div>
+            <div class="pc-tags">
+              <span class="pc-tag">C# Sockets</span>
+              <span class="pc-tag">ASP.NET</span>
+              <span class="pc-tag">TCP/IP</span>
+              <span class="pc-tag">SQLite</span>
+            </div>
+          </div>
+          <div class="pc-desc">Rede distribuída de sensores One Health com gateways e servidor central. Protocolo TCP próprio com ACKs, heartbeat e concorrência via threads. Dashboard web com dados em tempo real.</div>
+        </div>
+
+        <div class="pc">
+          <div class="pc-header">
+            <div class="pc-name">🎮 Bomberman3D</div>
+            <div class="pc-tags">
+              <span class="pc-tag">Three.js</span>
+              <span class="pc-tag">WebGL</span>
+              <span class="pc-tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="pc-desc">Jogo 3D multiplayer no browser com física de colisões, explosões procedurais, texturas PBR e modo split-screen local.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

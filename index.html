@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adriano Ribeiro – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #06070F;
+  --surface: #111425;
+  --border:  rgba(255,255,255,.08);
+  --text:    #E8EAF6;
+  --muted:   #6B7094;
+  --accent:  #6C63FF;
+  --accent2: #00D4FF;
+  --grad:    linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* background glow blobs */
+body::before {
+  content: '';
+  position: fixed;
+  width: 600px; height: 600px;
+  top: -200px; right: -150px;
+  background: radial-gradient(circle, rgba(108,99,255,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 500px; height: 500px;
+  bottom: -150px; left: -100px;
+  background: radial-gradient(circle, rgba(0,212,255,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* grid */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 56px 52px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 32px 100px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04);
+}
+
+/* top dot indicator */
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(52,211,153,.1);
+  border: 1px solid rgba(52,211,153,.25);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #34D399;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.status-dot::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: #34D399;
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .2; }
+}
+
+/* photo */
+.photo-ring {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  padding: 3px;
+  background: var(--grad);
+  position: relative;
+}
+
+.photo-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  background: #1A1D2E;
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+h1 span {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: .04em;
+  margin-bottom: 10px;
+}
+
+.location {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+/* divider */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+/* CTA buttons */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 22px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  border: 1px solid transparent;
+}
+
+.link-btn.primary {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 4px 28px rgba(108,99,255,.35);
+}
+
+.link-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(108,99,255,.55);
+}
+
+.link-btn.ghost {
+  background: rgba(255,255,255,.04);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.link-btn.ghost:hover {
+  border-color: rgba(108,99,255,.4);
+  background: rgba(108,99,255,.08);
+  transform: translateY(-2px);
+}
+
+.link-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.link-icon.a { background: rgba(108,99,255,.2); }
+.link-icon.b { background: rgba(0,212,255,.12); }
+.link-icon.c { background: rgba(255,255,255,.06); }
+.link-icon.d { background: rgba(255,107,157,.12); }
+
+.link-text { text-align: left; flex: 1; }
+.link-title { font-size: 13.5px; font-weight: 700; display: block; }
+.link-sub   { font-size: 10.5px; color: var(--muted); font-weight: 400; display: block; margin-top: 1px; }
+
+.arrow { color: var(--muted); font-size: 16px; }
+
+/* social row */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.soc {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.soc:hover {
+  border-color: rgba(108,99,255,.4);
+  color: var(--text);
+  background: rgba(108,99,255,.08);
+  transform: translateY(-1px);
+}
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<div class="card">
+
+  <div class="status-dot">Disponível</div>
+
+  <div class="photo-ring">
+    <img src="foto.jpg" alt="Adriano Ribeiro">
+  </div>
+
+  <h1>Adriano <span>Ribeiro</span></h1>
+  <p class="subtitle">Engenheiro de Software · Full-Stack</p>
+  <p class="location">📍 Porto, Portugal · UTAD 2026</p>
+
+  <hr>
+
+  <div class="links">
+
+    <a href="adriano_portfolio.html" class="link-btn primary">
+      <div class="link-icon a">🚀</div>
+      <div class="link-text">
+        <span class="link-title">Ver Portfolio</span>
+        <span class="link-sub">Projetos, skills e experiência completa</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="CV_Adriano_Ribeiro_PT.html" class="link-btn ghost">
+      <div class="link-icon b">📄</div>
+      <div class="link-text">
+        <span class="link-title">Curriculum Vitae</span>
+        <span class="link-sub">Versão impressa em A4</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a href="https://github.com/stkzinnn" target="_blank" class="link-btn ghost">
+      <div class="link-icon c">⌨</div>
+      <div class="link-text">
+        <span class="link-title">GitHub</span>
+        <span class="link-sub">github.com/stkzinnn</span>
+      </div>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a href="mailto:adrianoribeiro2554@gmail.com" class="link-btn ghost">
+      <div class="link-icon d">✉</div>
+      <div class="link-text">
+        <span class="link-title">Enviar Email</span>
+        <span class="link-sub">adrianoribeiro2554@gmail.com</span>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+  </div>
+
+  <div class="socials">
+    <a href="https://linkedin.com/in/adrianoribeiro-informatic" target="_blank" class="soc">
+      💼 LinkedIn
+    </a>
+    <a href="https://github.com/stkzinnn" target="_blank" class="soc">
+      ⌨ GitHub
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
