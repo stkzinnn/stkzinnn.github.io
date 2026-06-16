@@ -154,7 +154,26 @@ h1 span {
 .location {
   font-size: 11.5px;
   color: var(--muted);
-  margin-bottom: 40px;
+  margin-bottom: 12px;
+}
+
+.learning-badges {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.lbadge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(0,212,255,.08);
+  border: 1px solid rgba(0,212,255,.25);
+  color: #67e8f9;
+  letter-spacing: .02em;
 }
 
 /* divider */
@@ -273,6 +292,10 @@ hr {
   <h1>Adriano <span>Ribeiro</span></h1>
   <p class="subtitle">Engenheiro de Software · Full-Stack</p>
   <p class="location">📍 Porto, Portugal · UTAD 2026</p>
+  <div class="learning-badges">
+    <span class="lbadge">🛡️ Cybersecurity</span>
+    <span class="lbadge">🤖 Inteligência Artificial</span>
+  </div>
 
   <hr>
 
