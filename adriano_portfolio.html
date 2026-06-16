@@ -1039,7 +1039,8 @@ const PROJECTS = {
     title:'Sistema de Monitorização Urbana',
     tagline:'Rede distribuída de sensores One Health com protocolo TCP próprio',
     github:'https://github.com/stkzinnn/TP1-SistemasDistribuidos',
-    previewType:'browser',
+    previewType:'screen',
+    screenshots:['DASHBOARDSISTEMAS.png','DASHBOARDSISTEMAS2.png','DASHBOARDSISTEMAS3.png','DASHBOARDSISTEMAS4.png','DASHBOARDSISTEMAS5.png'],
     tags:[{l:'C# Sockets',c:'cyan'},{l:'ASP.NET',c:'cyan'},{l:'SQLite',c:'purple'},{l:'TCP/IP',c:'cyan'},{l:'Threads',c:'purple'}],
     description:`Sistema distribuído de monitorização de sensores ambientais urbanos desenvolvido para a disciplina de Sistemas Distribuídos. A arquitetura é composta por <strong>sensores físicos simulados, gateways intermediários e um servidor central</strong>,todos a comunicar através de um protocolo TCP próprio.\n\nCada sensor reporta dados ambientais (temperatura, CO2, humidade, qualidade do ar) ao gateway mais próximo, que agrega e retransmite ao servidor central. O <strong>dashboard web ASP.NET</strong> apresenta os dados em tempo real com indicadores de estado de cada nó na rede.`,
     challenge:`Garantir comunicação fiável e ordenada entre dezenas de nós numa rede distribuída, sem perda de mensagens, sem deadlocks e com deteção automática de falhas, usando apenas sockets TCP raw sem frameworks de mensageria.`,
@@ -1177,7 +1178,7 @@ function buildPreview(p, id) {
   if(p.previewType==='screen') {
     const slides = p.screenshots.map(s=>`<div class="pv-phone-slide"><img src="${s}" alt=""></div>`).join('');
     const dots   = p.screenshots.map((_,i)=>`<div class="pv-phone-dot${i===0?' active':''}" onclick="pvGoTo(${i})"></div>`).join('');
-    return `<div class="pv-screen-wrap"><div class="pv-screen"><div class="pv-screen-bar"><div class="pv-screen-dot" style="background:#ff5f57"></div><div class="pv-screen-dot" style="background:#febc2e"></div><div class="pv-screen-dot" style="background:#28c840"></div><span class="pv-screen-title">Bomberman3D · browser · Three.js</span></div><div class="pv-screen-slides pv-phone-slides" id="pvSlides">${slides}</div></div><div class="pv-phone-dots" id="pvDots">${dots}</div></div>`;
+    return `<div class="pv-screen-wrap"><div class="pv-screen"><div class="pv-screen-bar"><div class="pv-screen-dot" style="background:#ff5f57"></div><div class="pv-screen-dot" style="background:#febc2e"></div><div class="pv-screen-dot" style="background:#28c840"></div><span class="pv-screen-title">${p.title} · browser</span></div><div class="pv-screen-slides pv-phone-slides" id="pvSlides">${slides}</div></div><div class="pv-phone-dots" id="pvDots">${dots}</div></div>`;
   }
   if(p.previewType==='game') {
     const grid = [
