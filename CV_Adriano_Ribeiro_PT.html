@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
@@ -318,6 +318,24 @@ body {
   line-height: 1.55;
 }
 
+/* TOP BAR */
+.cv-top-bar { grid-column:1/-1; height:4px; background:linear-gradient(90deg,#6C63FF,#00D4FF); }
+
+/* INTERESSE TAGS */
+.interest-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.itag {
+  font-size:9px; font-weight:600; padding:3px 9px; border-radius:100px;
+  background:rgba(0,212,255,.12); border:1px solid rgba(0,212,255,.25); color:#67e8f9;
+}
+
+/* CALLOUT OBJETIVOS */
+.objetivo-box {
+  background:#F0F7FF; border:1px solid #DBEAFE; border-left:3px solid #6C63FF;
+  border-radius:8px; padding:10px 12px; margin-top:6px;
+}
+.objetivo-box p { font-size:10px; color:#374151; line-height:1.65; }
+.objetivo-box strong { color:#1F2937; }
+
 /* PRINT */
 @media print {
   body { background: none; padding: 0; }
@@ -329,6 +347,7 @@ body {
 <body>
 
 <div class="cv">
+  <div class="cv-top-bar"></div>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -389,11 +408,11 @@ body {
         <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
       </div>
       <div class="lang-item">
-        <div class="lang-name">Inglês <span class="lang-level">B2 — Fluente</span></div>
+        <div class="lang-name">Inglês <span class="lang-level">B2, Fluente</span></div>
         <div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div>
       </div>
       <div class="lang-item">
-        <div class="lang-name">Espanhol <span class="lang-level">A2 — Básico</span></div>
+        <div class="lang-name">Espanhol <span class="lang-level">A2, Básico</span></div>
         <div class="lang-bar"><div class="lang-fill" style="width:35%"></div></div>
       </div>
     </div>
@@ -407,6 +426,18 @@ body {
       <div class="soft-skill">Autogestão & autonomia</div>
       <div class="soft-skill">Aprendizagem rápida</div>
       <div class="soft-skill">Atenção ao detalhe</div>
+    </div>
+
+    <!-- INTERESSES -->
+    <div>
+      <div class="sidebar-section-title">Objetivos de Carreira</div>
+      <div class="interest-tags">
+        <span class="itag">🛡️ Cibersegurança</span>
+        <span class="itag">🤖 Inteligência Artificial</span>
+        <span class="itag">🔐 Pentesting</span>
+        <span class="itag">🧠 Machine Learning</span>
+      </div>
+      <div style="font-size:9.5px;color:#6B7094;margin-top:8px;line-height:1.6;">Áreas em que estou a investir ativamente e onde quero crescer profissionalmente.</div>
     </div>
 
     <!-- LOCALIZAÇÃO -->
@@ -433,7 +464,7 @@ body {
     <div>
       <div class="section-head">Perfil</div>
       <p class="perfil-text">
-        Finalista em Engenharia Informática na UTAD, com apenas <strong>uma unidade curricular em falta</strong>. Especializado em desenvolvimento full-stack — de APIs geoespaciais em FastAPI/PostGIS a aplicações móveis em React Native. Projeto final: <strong>SmartBikeRoutes</strong>, uma aplicação de routing ciclável inteligente com dados OSM reais, meteorologia em tempo real e rede social integrada. Concilio a vida académica com trabalho a tempo parcial na Endesa há 3 anos, o que reforçou a minha <strong>capacidade de comunicação, negociação e empatia com o utilizador final</strong>.
+        Finalista em Engenharia Informática na UTAD, com apenas <strong>uma unidade curricular em falta</strong>. Desenvolvi o meu projeto de final de curso de raiz: <strong>SmartBikeRoutes</strong>, uma app móvel de routing ciclável inteligente com dados OSM reais, meteorologia em tempo real e rede social integrada. Concilio a vida académica com trabalho a tempo parcial na Endesa há 3 anos, o que reforçou a minha capacidade de comunicação e empatia com o utilizador final. Estou genuinamente motivado para entrar e crescer nas áreas de <strong>Cibersegurança e Inteligência Artificial</strong>, e estou disposto a aprender a fundo o que for necessário para isso.
       </p>
     </div>
 
@@ -444,7 +475,7 @@ body {
         <div class="edu-left">
           <div class="edu-degree">Licenciatura em Engenharia Informática</div>
           <div class="edu-school">UTAD – Universidade de Trás-os-Montes e Alto Douro · Vila Real</div>
-          <div class="edu-detail">Finalista — 1 UC em falta. Projeto final: SmartBikeRoutes (routing geoespacial + social).</div>
+          <div class="edu-detail">Finalista, 1 UC em falta. Projeto final: SmartBikeRoutes (routing geoespacial + social).</div>
         </div>
         <div class="edu-date">2022 – 2026</div>
       </div>
@@ -474,7 +505,7 @@ body {
 
         <div class="pc">
           <div class="pc-header">
-            <div class="pc-name">🚴 SmartBikeRoutes — Projeto Principal</div>
+            <div class="pc-name">🚴 SmartBikeRoutes, Projeto Principal</div>
             <div class="pc-tags">
               <span class="pc-tag">React Native</span>
               <span class="pc-tag">FastAPI</span>
