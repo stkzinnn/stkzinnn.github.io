@@ -371,10 +371,10 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 .pv-screen-bar { background:#1a1d2e; padding:8px 14px; display:flex; align-items:center; gap:6px; border-bottom:1px solid rgba(255,255,255,.06); }
 .pv-screen-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
 .pv-screen-title { font-size:10px; color:rgba(255,255,255,.3); margin-left:8px; font-family:monospace; }
-.pv-screen-viewport { width:100%; aspect-ratio:16/9; overflow:hidden; background:#000; position:relative; }
-.pv-screen-viewport .pv-phone-slides { display:flex; height:100%; transition:transform .6s cubic-bezier(.4,0,.2,1); }
-.pv-screen-viewport .pv-phone-slide { min-width:100%; height:100%; overflow:hidden; }
-.pv-screen-viewport .pv-phone-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.pv-screen-viewport { width:100%; padding-bottom:56.25%; position:relative; overflow:hidden; background:#000; }
+.pv-screen-track { position:absolute; top:0; left:0; height:100%; display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.pv-screen-slide { flex-shrink:0; width:100%; height:100%; overflow:hidden; }
+.pv-screen-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 .pv-game-wrap {
   width:480px;
   border-radius:12px;
@@ -1178,9 +1178,9 @@ function buildPreview(p, id) {
     </div>`;
   }
   if(p.previewType==='screen') {
-    const slides = p.screenshots.map(s=>`<div class="pv-phone-slide"><img src="${s}" alt=""></div>`).join('');
-    const dots   = p.screenshots.map((_,i)=>`<div class="pv-phone-dot${i===0?' active':''}" onclick="pvGoTo(${i})"></div>`).join('');
-    return `<div class="pv-screen-wrap"><div class="pv-screen"><div class="pv-screen-bar"><div class="pv-screen-dot" style="background:#ff5f57"></div><div class="pv-screen-dot" style="background:#febc2e"></div><div class="pv-screen-dot" style="background:#28c840"></div><span class="pv-screen-title">${p.title} · browser</span></div><div class="pv-screen-viewport"><div class="pv-phone-slides" id="pvSlides">${slides}</div></div></div><div class="pv-phone-dots" id="pvDots">${dots}</div></div>`;
+    const slides = p.screenshots.map(s=>`<div class="pv-screen-slide"><img src="${s}" alt=""></div>`).join('');
+    const dots   = p.screenshots.map((_,i)=>`<div class="pv-phone-dot${i===0?' active':''}" onclick="scGoTo(${i})"></div>`).join('');
+    return `<div class="pv-screen-wrap"><div class="pv-screen"><div class="pv-screen-bar"><div class="pv-screen-dot" style="background:#ff5f57"></div><div class="pv-screen-dot" style="background:#febc2e"></div><div class="pv-screen-dot" style="background:#28c840"></div><span class="pv-screen-title">${p.title} · browser</span></div><div class="pv-screen-viewport"><div class="pv-screen-track" id="scTrack">${slides}</div></div></div><div class="pv-phone-dots" id="scDots">${dots}</div></div>`;
   }
   if(p.previewType==='game') {
     const grid = [
@@ -1235,6 +1235,18 @@ function pvGoTo(n) {
   const dots   = document.querySelectorAll('#pvDots .pv-phone-dot');
   if(slides) slides.style.transform = `translateX(-${pvCur*100}%)`;
   if(dots) dots.forEach((d,i)=>d.classList.toggle('active',i===pvCur));
+}
+
+let scCur = 0;
+function scGoTo(n) {
+  scCur = n;
+  const track = document.getElementById('scTrack');
+  const dots  = document.querySelectorAll('#scDots .pv-phone-dot');
+  if(track) {
+    const slideW = track.parentElement.offsetWidth;
+    track.style.transform = `translateX(-${scCur * slideW}px)`;
+  }
+  if(dots) dots.forEach((d,i)=>d.classList.toggle('active',i===scCur));
 }
 
 /* ── escape key ── */
