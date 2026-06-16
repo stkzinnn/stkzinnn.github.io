@@ -21,7 +21,7 @@ body {
 .cv {
   width: 210mm;
   min-height: 297mm;
-  background: #F8F9FB;
+  background: linear-gradient(to right, #0F1117 72mm, #F8F9FB 72mm);
   display: grid;
   grid-template-columns: 72mm 1fr;
   box-shadow: 0 20px 80px rgba(0,0,0,.25);
@@ -33,23 +33,23 @@ body {
 .sidebar {
   background: #0F1117;
   color: #E8EAF6;
-  padding: 22px 20px 24px;
+  padding: 18px 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .sidebar-header {
   text-align: center;
-  padding-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 .photo-wrap {
-  width: 76px; height: 76px;
+  width: 68px; height: 68px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 10px;
+  margin: 0 auto 8px;
   border: 2.5px solid #6C63FF;
   background: #1A1D2E;
 }
@@ -319,7 +319,7 @@ body {
 }
 
 /* TOP BAR */
-.cv-top-bar { grid-column:1/-1; height:4px; background:linear-gradient(90deg,#6C63FF,#00D4FF); }
+.cv::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#6C63FF,#00D4FF); z-index:10; }
 
 /* INTERESSE TAGS */
 .interest-tags { display:flex; flex-wrap:wrap; gap:5px; }
@@ -348,7 +348,6 @@ body {
 <body>
 
 <div class="cv">
-  <div class="cv-top-bar"></div>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -445,9 +444,7 @@ body {
     <div>
       <div class="sidebar-section-title">Localização</div>
       <div class="location-info">
-        Porto, Portugal<br>
-        Disponível para trabalho híbrido ou presencial.<br>
-        Aberto a relocação.
+        Porto, Portugal
       </div>
     </div>
 
@@ -533,6 +530,19 @@ body {
 
         <div class="pc">
           <div class="pc-header">
+            <div class="pc-name">📋 GestoDocente</div>
+            <div class="pc-tags">
+              <span class="pc-tag">C# / WPF</span>
+              <span class="pc-tag">.NET</span>
+              <span class="pc-tag">MVVM</span>
+              <span class="pc-tag">SQLite</span>
+            </div>
+          </div>
+          <div class="pc-desc">Aplicação desktop para gestão de dados docentes em arquitetura MVVM. Separação total entre View (XAML), ViewModel e Model, data binding bidirecional com INotifyPropertyChanged e injeção de dependências para UI totalmente reativa.</div>
+        </div>
+
+        <div class="pc">
+          <div class="pc-header">
             <div class="pc-name">🎮 Bomberman3D</div>
             <div class="pc-tags">
               <span class="pc-tag">Three.js</span>
@@ -540,7 +550,7 @@ body {
               <span class="pc-tag">JavaScript</span>
             </div>
           </div>
-          <div class="pc-desc">Jogo 3D multiplayer no browser com física de colisões, explosões procedurais, texturas PBR e modo split-screen local.</div>
+          <div class="pc-desc">Recriação 3D do clássico Bomberman no browser com Three.js e WebGL puro, sem motores de jogo. Física de colisões AABB, explosões procedurais com propagação realista, materiais PBR e modo split-screen para dois jogadores.</div>
         </div>
 
       </div>
