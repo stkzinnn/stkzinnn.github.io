@@ -366,6 +366,13 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 .mock-badge-blue { font-size:9px; font-weight:600; padding:2px 7px; border-radius:4px; background:rgba(108,99,255,.15); color:#a8a3ff; }
 
 /* game mock */
+.pv-screen-wrap { display:flex; flex-direction:column; align-items:center; gap:14px; }
+.pv-screen { width:100%; max-width:540px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,.12); box-shadow:0 20px 60px rgba(0,0,0,.5); }
+.pv-screen-bar { background:#1a1d2e; padding:8px 14px; display:flex; align-items:center; gap:6px; border-bottom:1px solid rgba(255,255,255,.06); }
+.pv-screen-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.pv-screen-title { font-size:10px; color:rgba(255,255,255,.3); margin-left:8px; font-family:monospace; }
+.pv-screen-slides { display:flex; aspect-ratio:16/9; overflow:hidden; background:#000; }
+.pv-screen-slides .pv-phone-slide img { object-fit:cover; object-position:center; }
 .pv-game-wrap {
   width:480px;
   border-radius:12px;
@@ -1054,7 +1061,8 @@ const PROJECTS = {
     title:'Bomberman3D',
     tagline:'Jogo 3D multiplayer no browser sem plugins',
     github:'https://github.com/stkzinnn/Bomberman3D',
-    previewType:'game',
+    previewType:'screen',
+    screenshots:['LEVEL1.png','LEVEL1V1.png','LEVEL2.png','LEVEL3.png','LEVEL4.png','LEVEL5.png'],
     tags:[{l:'Three.js',c:'green'},{l:'WebGL',c:'green'},{l:'JavaScript',c:'purple'},{l:'PBR',c:'green'}],
     description:`Recriação 3D do clássico Bomberman diretamente no browser usando Three.js e WebGL, sem Unity, sem Unreal, sem plugins. O jogo corre a <strong>60fps</strong> com física de colisões, explosões procedurais, materiais PBR e modo split-screen para dois jogadores no mesmo ecrã.\n\nO projeto foi um exercício de perceber como os motores de jogo funcionam por baixo,e depois replicar esses mecanismos em JavaScript puro. Desde o loop de jogo e deteção de colisões até ao sistema de câmera e iluminação dinâmica.`,
     challenge:`Renderizar um jogo 3D fluido no browser com física de colisões precisa, explosões procedurais com propagação realista e modo split-screen, tudo em JavaScript puro, sem motores de jogo nem bibliotecas de física.`,
@@ -1165,6 +1173,11 @@ function buildPreview(p, id) {
         </div>
       </div>
     </div>`;
+  }
+  if(p.previewType==='screen') {
+    const slides = p.screenshots.map(s=>`<div class="pv-phone-slide"><img src="${s}" alt=""></div>`).join('');
+    const dots   = p.screenshots.map((_,i)=>`<div class="pv-phone-dot${i===0?' active':''}" onclick="pvGoTo(${i})"></div>`).join('');
+    return `<div class="pv-screen-wrap"><div class="pv-screen"><div class="pv-screen-bar"><div class="pv-screen-dot" style="background:#ff5f57"></div><div class="pv-screen-dot" style="background:#febc2e"></div><div class="pv-screen-dot" style="background:#28c840"></div><span class="pv-screen-title">Bomberman3D · browser · Three.js</span></div><div class="pv-screen-slides pv-phone-slides" id="pvSlides">${slides}</div></div><div class="pv-phone-dots" id="pvDots">${dots}</div></div>`;
   }
   if(p.previewType==='game') {
     const grid = [
