@@ -678,6 +678,20 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
         </div>
       </div>
 
+      <div class="projeto-card reveal" onclick="openProject('pitwall')">
+        <div class="projeto-header">
+          <div class="projeto-icon blue">🏁</div>
+          <div class="projeto-open">→</div>
+        </div>
+        <div class="projeto-title">PitWall</div>
+        <div class="projeto-desc">F1 race strategy simulator: rebuild a real race from telemetry and test the tyre and pit stop decisions that weren't made.</div>
+        <div class="projeto-tags">
+          <span class="ptag">Python</span><span class="ptag">FastAPI</span>
+          <span class="ptag cyan">PostgreSQL</span><span class="ptag cyan">SQLAlchemy</span>
+          <span class="ptag">React</span><span class="ptag">TypeScript</span>
+        </div>
+      </div>
+
       <div class="projeto-card reveal" onclick="openProject('dist')">
         <div class="projeto-header">
           <div class="projeto-icon cyan">🌐</div>
@@ -985,6 +999,19 @@ const PROJECTS = {
     description:`My final-year project, built individually from the ground up. A complete mobile app for intelligent cycling routing that uses real OpenStreetMap data for Vila Real to calculate personalised routes by rider profile, <strong>leisure, exercise, or commuter</strong>.\n\nEach profile carries different weights in the routing algorithm: the leisure rider prefers flatter, more scenic routes; the exercise rider favours climbs and distance; the commuter wants the fastest path.\n\nBeyond routing, the app has a <strong>full social module</strong> with a shared-route feed, likes, comments, followers, notifications, and detailed personal stats. It integrates 4 external APIs: OpenWeatherMap, OpenTopography, Nominatim, and OSM Overpass.`,
     challenge:`Building a real geospatial routing system over OSM graphs with tens of thousands of nodes, making sure routes varied dynamically with rider profile and weather conditions, without response times becoming unacceptable for a mobile app.`,
     solution:`A FastAPI + PostGIS + pgRouting pipeline with a Dijkstra/A* algorithm and a dynamic per-profile weighting system. The OSM graph is pre-processed and indexed in PostGIS for fast spatial queries. Weather integration adjusts the weights in real time. JWT authentication with refresh tokens and a scalable modular architecture.`
+  },
+  pitwall: {
+    badge:'🏁 Race strategy', badgeBg:'rgba(108,99,255,.15)', badgeColor:'#a8a3ff', badgeBorder:'rgba(108,99,255,.3)',
+    title:'PitWall',
+    tagline:'F1 race strategy simulator — rebuild a real race and test the decisions that weren\'t made',
+    github:'https://github.com/stkzinnn/pitwall',
+    previewType:'screen',
+    // TODO: replace with real screenshots once the frontend has them
+    screenshots:[],
+    tags:[{l:'Python',c:'purple'},{l:'FastAPI',c:'cyan'},{l:'PostgreSQL',c:'cyan'},{l:'SQLAlchemy',c:'cyan'},{l:'React',c:'purple'},{l:'TypeScript',c:'purple'},{l:'Docker',c:'green'},{l:'GitHub Actions',c:'green'}],
+    description:`An API-first platform that reconstructs real Formula 1 races from telemetry data and simulates alternative tyre and pit stop strategies to estimate how they would have changed the result. Race data comes from FastF1, is normalised into typed Pydantic schemas and persisted in PostgreSQL, so a session is only fetched from the source once. The React frontend lets you pick a race, see the real classification, build alternative stint plans for any driver, and compare them against what actually happened, including whether the driver would have gained or lost positions.`,
+    challenge:`A naive lap-time model produces physically impossible results. My first simulation claimed a strategy would have been 340 seconds faster. The causes were real modelling errors, not bad data: safety car laps were corrupting the tyre degradation regression, the car getting lighter on fuel was being counted as tyre performance, and the pace model was reusing the wrong stint's data.`,
+    solution:`Outlier laps are filtered before fitting the degradation regression, and safety car and VSC periods are detected from track status and added back separately, since that time would be lost under any strategy. A fuel correction model isolates tyre degradation from the weight the car burns off each lap. One pace model is kept per real stint instead of one per compound. Replaying a driver's actual strategy went from 90 seconds of error to within 5 seconds of the real race time. 91 tests, 99% coverage.`
   },
   dist: {
     badge:'🌐 Distributed systems', badgeBg:'rgba(0,212,255,.1)', badgeColor:'#67e8f9', badgeBorder:'rgba(0,212,255,.25)',
