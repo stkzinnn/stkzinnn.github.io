@@ -351,7 +351,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 .pv-screen-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
 .pv-screen-title { font-size:10px; color:rgba(255,255,255,.3); margin-left:8px; font-family:monospace; }
 .pv-screen-viewport { width:100%; padding-bottom:56.25%; position:relative; overflow:hidden; background:#000; }
-.pv-screen-track { position:absolute; top:0; left:0; height:100%; display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.pv-screen-track { position:absolute; top:0; left:0; width:100%; height:100%; display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
 .pv-screen-slide { flex-shrink:0; width:100%; height:100%; overflow:hidden; }
 .pv-screen-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 .pv-game-wrap {
@@ -979,10 +979,14 @@ sections.forEach(s => navObs.observe(s));
 /* ── grid phone slider ── */
 const sbrSlides = document.getElementById('sbrSlides');
 const sbrDots   = document.querySelectorAll('#sbrDots .phone-dot');
-let sbrCur = 0, sbrTotal = 6;
+let sbrCur = 0, sbrTotal = 6, sbrTimer = null;
 function sbrGoTo(n){ sbrCur=n; sbrSlides.style.transform=`translateX(-${sbrCur*100}%)`; sbrDots.forEach((d,i)=>d.classList.toggle('active',i===sbrCur)); }
 sbrDots.forEach((d,i)=>d.addEventListener('click',()=>sbrGoTo(i)));
-setInterval(()=>sbrGoTo((sbrCur+1)%sbrTotal), 2800);
+function sbrStart(){ if(!sbrTimer) sbrTimer = setInterval(()=>sbrGoTo((sbrCur+1)%sbrTotal), 4500); }
+function sbrStop(){ if(sbrTimer){ clearInterval(sbrTimer); sbrTimer=null; } }
+const sbrMockup = document.querySelector('.phone-mockup-wrap');
+if(sbrMockup){ sbrMockup.addEventListener('mouseenter', sbrStop); sbrMockup.addEventListener('mouseleave', sbrStart); }
+sbrStart();
 
 /* ════════════════════════════════
    PROJECT DATA
@@ -1018,7 +1022,7 @@ const PROJECTS = {
     title:'Urban Monitoring System',
     tagline:'Distributed One Health sensor network with a custom TCP protocol',
     github:'https://github.com/stkzinnn/TP1-SistemasDistribuidos',
-    previewType:'phone',
+    previewType:'screen',
     screenshots:['DASHBOARDSISTEMAS.png','DASHBOARDSISTEMAS2.png','DASHBOARDSISTEMAS3.png','DASHBOARDSISTEMAS4.png','DASHBOARDSISTEMAS5.png'],
     tags:[{l:'C# Sockets',c:'cyan'},{l:'ASP.NET',c:'cyan'},{l:'SQLite',c:'purple'},{l:'TCP/IP',c:'cyan'},{l:'Threads',c:'purple'}],
     description:`A distributed monitoring system for urban environmental sensors, built for the Distributed Systems course. The architecture is made up of <strong>simulated physical sensors, intermediary gateways, and a central server</strong>, all communicating over a custom TCP protocol.\n\nEach sensor reports environmental data (temperature, CO2, humidity, air quality) to its nearest gateway, which aggregates and forwards it to the central server. The <strong>ASP.NET web dashboard</strong> shows the data in real time with a status indicator for every node in the network.`,
@@ -1031,6 +1035,7 @@ const PROJECTS = {
     tagline:'Academic staff management with an MVVM architecture',
     github:'https://github.com/stkzinnn/GestoDocente',
     previewType:'desktop',
+    // TODO: replace with real screenshots, this mockup uses invented data
     tags:[{l:'C#/.NET',c:'pink'},{l:'WPF',c:'pink'},{l:'MVVM',c:'purple'},{l:'Desktop',c:'purple'}],
     description:`A desktop app for centralised academic staff management, built in WPF with an <strong>MVVM architecture</strong>. It manages teachers, classes, schedules, and reports through a modern, responsive Windows desktop interface.\n\nThe main focus of the project was demonstrating a clean, scalable software architecture, not just making it work, but doing it the right way, with <strong>clear separation of concerns</strong> and code any developer can pick up and understand.`,
     challenge:`Building a rich, interactive desktop interface that was easy to use and ready to grow, without the code turning into a web too tangled to maintain as features increased.`,
@@ -1041,7 +1046,7 @@ const PROJECTS = {
     title:'Bomberman3D',
     tagline:'3D multiplayer browser game with no plugins',
     github:'https://github.com/stkzinnn/Bomberman3D',
-    previewType:'phone',
+    previewType:'screen',
     screenshots:['LEVEL1.png','LEVEL1V1.png','LEVEL2.png','LEVEL3.png','LEVEL4.png','LEVEL5.png'],
     tags:[{l:'Three.js',c:'green'},{l:'WebGL',c:'green'},{l:'JavaScript',c:'purple'},{l:'PBR',c:'green'}],
     description:`A 3D recreation of classic Bomberman directly in the browser using Three.js and WebGL, no Unity, no Unreal, no plugins. The game runs at <strong>60fps</strong> with collision physics, procedural explosions, PBR materials, and split-screen mode for two players on the same screen.\n\nThe project was an exercise in understanding how game engines work under the hood, then replicating those mechanisms in plain JavaScript. Everything from the game loop and collision detection to the camera system and dynamic lighting.`,
@@ -1072,7 +1077,8 @@ function openProject(id) {
   window.scrollTo(0,0);
   setTimeout(()=>pv.classList.remove('project-view-enter'), 400);
 
-  if(id==='sbr') initPvSlider();
+  if(p.previewType==='phone' && p.screenshots && p.screenshots.length) initPvSlider(p.screenshots.length, '#pvDots .pv-phone-dot', pvGoTo, '.pv-phone-wrap');
+  if(p.previewType==='screen' && p.screenshots && p.screenshots.length) initPvSlider(p.screenshots.length, '#scDots .pv-phone-dot', scGoTo, '.pv-screen-wrap');
   if(window.innerWidth<=900) closeSB();
 }
 
@@ -1199,11 +1205,15 @@ function buildBody(p) {
     </div>`;
 }
 
-/* ── project view phone slider ── */
-function initPvSlider() {
+/* ── project view slider (shared by phone and screen previews) ── */
+function initPvSlider(count, dotsSelector, goToFn, wrapSelector) {
   pvCur = 0;
-  if(pvSlideTimer) clearInterval(pvSlideTimer);
-  pvSlideTimer = setInterval(()=>pvGoTo((pvCur+1)%6), 2800);
+  if(pvSlideTimer) { clearInterval(pvSlideTimer); pvSlideTimer=null; }
+  const start = () => { if(!pvSlideTimer) pvSlideTimer = setInterval(()=>goToFn((pvCur+1)%count), 4500); };
+  const stop  = () => { if(pvSlideTimer) { clearInterval(pvSlideTimer); pvSlideTimer=null; } };
+  start();
+  const wrap = document.querySelector(wrapSelector);
+  if(wrap) { wrap.addEventListener('mouseenter', stop); wrap.addEventListener('mouseleave', start); }
 }
 
 function pvGoTo(n) {
@@ -1214,16 +1224,12 @@ function pvGoTo(n) {
   if(dots) dots.forEach((d,i)=>d.classList.toggle('active',i===pvCur));
 }
 
-let scCur = 0;
 function scGoTo(n) {
-  scCur = n;
+  pvCur = n;
   const track = document.getElementById('scTrack');
   const dots  = document.querySelectorAll('#scDots .pv-phone-dot');
-  if(track) {
-    const slideW = track.parentElement.offsetWidth;
-    track.style.transform = `translateX(-${scCur * slideW}px)`;
-  }
-  if(dots) dots.forEach((d,i)=>d.classList.toggle('active',i===scCur));
+  if(track) track.style.transform = `translateX(-${pvCur*100}%)`;
+  if(dots) dots.forEach((d,i)=>d.classList.toggle('active',i===pvCur));
 }
 
 /* ── escape key ── */
