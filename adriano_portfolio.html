@@ -181,22 +181,21 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .learning-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .learning-card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:32px; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
 .learning-card:hover { border-color:rgba(108,99,255,.4); transform:translateY(-4px); }
-.learning-card.cybersec::before { content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; background:radial-gradient(circle,rgba(52,211,153,.1) 0%,transparent 70%); pointer-events:none; }
+.learning-card.devops::before { content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; background:radial-gradient(circle,rgba(52,211,153,.1) 0%,transparent 70%); pointer-events:none; }
 .learning-card.ai::before { content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; background:radial-gradient(circle,rgba(108,99,255,.12) 0%,transparent 70%); pointer-events:none; }
 .learning-icon-wrap { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:18px; }
-.cybersec .learning-icon-wrap { background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.2); }
+.devops .learning-icon-wrap { background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.2); }
 .ai .learning-icon-wrap { background:rgba(108,99,255,.12); border:1px solid rgba(108,99,255,.2); }
 .learning-title { font-size:18px; font-weight:800; color:#fff; margin-bottom:4px; letter-spacing:-.02em; }
 .learning-subtitle { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px; }
-.cybersec .learning-subtitle { color:#34D399; }
+.devops .learning-subtitle { color:#34D399; }
 .ai .learning-subtitle { color:var(--accent); }
 .learning-desc { font-size:13px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
 .learning-items { display:flex; flex-direction:column; gap:8px; }
 .learning-item { display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--muted); }
 .learning-item-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-.cybersec .learning-item-dot { background:#34D399; }
+.devops .learning-item-dot { background:#34D399; }
 .ai .learning-item-dot { background:var(--accent); }
-.honest-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(251,191,36,.08); border:1px solid rgba(251,191,36,.2); border-radius:100px; padding:4px 12px; font-size:10.5px; font-weight:600; color:#FBBF24; margin-bottom:32px; }
 
 /* ══ CONTACTO ══ */
 #contacto { text-align:center; }
@@ -750,30 +749,29 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
   <section class="section" id="aprender">
     <div class="section-eyebrow reveal">Next steps</div>
     <h2 class="section-title reveal">What I'm learning</h2>
-    <div class="honest-badge reveal">🎯 Com bases do curso, a aprofundar de forma autodidata</div>
     <div class="learning-grid">
-      <div class="learning-card cybersec reveal">
-        <div class="learning-icon-wrap">🛡️</div>
-        <div class="learning-title">Cibersegurança</div>
-        <div class="learning-subtitle">Objetivo profissional</div>
-        <div class="learning-desc">Área que me fascina genuinamente. Tenho uma <strong>base sólida em redes e sistemas distribuídos</strong> adquirida no curso, o que me dá uma vantagem real para entender como os ataques e as defesas funcionam a fundo.</div>
+      <div class="learning-card devops reveal">
+        <div class="learning-icon-wrap">⚙</div>
+        <div class="learning-title">DevOps</div>
+        <div class="learning-subtitle">Currently working on</div>
+        <div class="learning-desc">Learning DevOps hands-on by containerising and shipping my own project rather than following tutorials. Backend and frontend both run in Docker, CI is green on every push, and deployment is the current step.</div>
         <div class="learning-items">
-          <div class="learning-item"><div class="learning-item-dot"></div><span>Base em redes, protocolos TCP/IP e sockets (C#)</span></div>
-          <div class="learning-item"><div class="learning-item-dot"></div><span>Sistemas distribuídos, concorrência e gestão de falhas</span></div>
-          <div class="learning-item"><div class="learning-item-dot"></div><span>TryHackMe, OWASP Top 10, vulnerabilidades web</span></div>
-          <div class="learning-item"><div class="learning-item-dot"></div><span>Linux para segurança e pentesting</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>Docker: multi-stage builds, entrypoint running DB migrations on start</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>docker-compose: internal network, healthchecks, env-based config</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>GitHub Actions: hermetic CI, parallel backend and frontend jobs</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>Next: continuous deployment, then monitoring and Kubernetes</span></div>
         </div>
       </div>
       <div class="learning-card ai reveal">
         <div class="learning-icon-wrap">🤖</div>
-        <div class="learning-title">Inteligência Artificial</div>
-        <div class="learning-subtitle">Objetivo profissional</div>
-        <div class="learning-desc">Uso ferramentas de IA diariamente no desenvolvimento e tenho uma <strong>base sólida em Python e algoritmos</strong> que me permite explorar ML com fundamentos reais. O objetivo é passar de utilizador para construtor.</div>
+        <div class="learning-title">Artificial intelligence</div>
+        <div class="learning-subtitle">Professional goal</div>
+        <div class="learning-desc">I use AI tools daily in development and have a <strong>solid base in Python and algorithms</strong> from the degree that lets me explore ML with real fundamentals. The goal is to move from consumer to builder.</div>
         <div class="learning-items">
-          <div class="learning-item"><div class="learning-item-dot"></div><span>Base em Python e algoritmos (curso)</span></div>
-          <div class="learning-item"><div class="learning-item-dot"></div><span>Python para Machine Learning e fundamentos de ML</span></div>
-          <div class="learning-item"><div class="learning-item-dot"></div><span>LLMs, prompt engineering e APIs (Anthropic, OpenAI)</span></div>
-          <div class="learning-item"><div class="learning-item-dot"></div><span>Integração de IA em projetos reais</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>Python and algorithms foundation (degree)</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>Python for machine learning and ML fundamentals</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>LLM APIs and integrating them into real projects</span></div>
+          <div class="learning-item"><div class="learning-item-dot"></div><span>Moving from using AI tools to building with them</span></div>
         </div>
       </div>
     </div>
