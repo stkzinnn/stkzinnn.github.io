@@ -799,93 +799,95 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 
 <script>
 /* ════════════════════════════════
-   PARTICLE NETWORK BACKGROUND
+   GENERATIVE TREE BACKGROUND
 ════════════════════════════════ */
 (function() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const canvas = document.getElementById('particles-bg');
   const ctx    = canvas.getContext('2d');
-  let W, H, particles = [];
-  const mouse = { x: null, y: null };
-  const MAX_DIST = 140, MOUSE_DIST = 180;
+  let W, H;
+  let branches = [];
+  let branchCount = 0;
+  let reseedTimer = null;
+  const MAX_BRANCHES = 500;
+  const MAX_DEPTH = 7;
+
+  function makeBranch(x, y, angle, length, depth) {
+    branchCount++;
+    return { x, y, angle, length, grown: 0, depth, speed: 1.6 + Math.random() * 0.8, split: false };
+  }
+
+  function seed() {
+    if (reseedTimer) { clearTimeout(reseedTimer); reseedTimer = null; }
+    branches = [];
+    branchCount = 0;
+    const count = W < 800 ? 2 : 4;
+    for (let i = 0; i < count; i++) {
+      const x = (W * (i + 1)) / (count + 1) + (Math.random() - 0.5) * 60;
+      const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.4;
+      const length = 70 + Math.random() * 40;
+      branches.push(makeBranch(x, H, angle, length, 0));
+    }
+  }
 
   function resize() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
+    ctx.fillStyle = '#0A0A0A';
+    ctx.fillRect(0, 0, W, H);
+    seed();
   }
 
-  function createParticles() {
-    particles = [];
-    const count = Math.min(Math.floor((W * H) / 14000), 90);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x:  Math.random() * W,
-        y:  Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r:  Math.random() * 1.4 + 0.6
-      });
-    }
-  }
+  function step() {
+    ctx.fillStyle = 'rgba(10,10,10,0.012)';
+    ctx.fillRect(0, 0, W, H);
 
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
+    let alive = false;
+    for (const b of branches) {
+      if (b.grown >= b.length) continue;
+      alive = true;
+      const prevGrown = b.grown;
+      b.grown = Math.min(b.length, b.grown + b.speed);
 
-    for (let p of particles) {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0)  p.x = W;
-      if (p.x > W)  p.x = 0;
-      if (p.y < 0)  p.y = H;
-      if (p.y > H)  p.y = 0;
+      const x1 = b.x + Math.cos(b.angle) * prevGrown;
+      const y1 = b.y + Math.sin(b.angle) * prevGrown;
+      const x2 = b.x + Math.cos(b.angle) * b.grown;
+      const y2 = b.y + Math.sin(b.angle) * b.grown;
 
+      ctx.strokeStyle = `rgba(255,255,255,${Math.max(0.12, 0.85 - b.depth * 0.11)})`;
+      ctx.lineWidth = Math.max(0.4, 2.2 - b.depth * 0.28);
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(140,130,255,0.55)';
-      ctx.fill();
-    }
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
 
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MAX_DIST) {
-          const alpha = (1 - dist / MAX_DIST) * 0.22;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-          ctx.lineWidth = 0.6;
-          ctx.stroke();
-        }
-      }
-
-      if (mouse.x !== null) {
-        const dx   = particles[i].x - mouse.x;
-        const dy   = particles[i].y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MOUSE_DIST) {
-          const alpha = (1 - dist / MOUSE_DIST) * 0.5;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
+      if (b.grown >= b.length && !b.split) {
+        b.split = true;
+        if (b.depth < MAX_DEPTH && branchCount < MAX_BRANCHES) {
+          const endX = b.x + Math.cos(b.angle) * b.length;
+          const endY = b.y + Math.sin(b.angle) * b.length;
+          const childCount = Math.random() < 0.75 ? 2 : 1;
+          for (let c = 0; c < childCount && branchCount < MAX_BRANCHES; c++) {
+            const childAngle  = b.angle + (Math.random() - 0.5) * 1.1;
+            const childLength = b.length * (0.68 + Math.random() * 0.14);
+            branches.push(makeBranch(endX, endY, childAngle, childLength, b.depth + 1));
+          }
+          alive = true;
         }
       }
     }
 
-    requestAnimationFrame(draw);
+    if (!alive && !reseedTimer) {
+      reseedTimer = setTimeout(() => { reseedTimer = null; seed(); }, 2500);
+    }
+
+    requestAnimationFrame(step);
   }
 
-  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-  document.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-  window.addEventListener('resize', () => { resize(); createParticles(); });
-
+  window.addEventListener('resize', resize);
   resize();
-  createParticles();
-  draw();
+  requestAnimationFrame(step);
 })();
 
 /* ── hamburger ── */
