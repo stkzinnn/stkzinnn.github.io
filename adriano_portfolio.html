@@ -574,7 +574,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
           <span class="grad2">Ribeiro</span>
         </h1>
         <p class="hero-desc">
-          Finalista em Engenharia Informática na UTAD, com experiência real em <strong>desenvolvimento full-stack</strong>, do backend geoespacial à interface móvel.<br><br>
+          Licenciado em Engenharia Informática pela UTAD, com experiência real em <strong>desenvolvimento full-stack</strong>, do backend geoespacial à interface móvel.<br><br>
           O que realmente me fascina é <strong>Inteligência Artificial e Cibersegurança</strong>, e estou genuinamente disposto a dedicar-me a aprender estas áreas a fundo. Não me limito a usar as ferramentas: quero entender os fundamentos, dominar os conceitos e um dia construir algo com impacto real nestas áreas.
         </p>
         <div class="hero-ctas">
@@ -606,12 +606,12 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     <h2 class="section-title reveal">Sobre mim</h2>
     <div class="sobre-grid">
       <div class="sobre-text reveal">
-        <p>Sou finalista em Engenharia Informática na UTAD, com apenas <strong>uma unidade curricular em falta</strong>. Apaixonado por construir software que resolve problemas reais, do backend geoespacial à interface móvel.</p>
+        <p>Sou licenciado em Engenharia Informática pela UTAD. Gosto de construir software que resolve problemas reais, do backend geoespacial à interface móvel.</p>
         <p>O meu projeto de final de curso, uma <strong>aplicação móvel de routing ciclável inteligente</strong> com dados OSM reais, meteorologia em tempo real e módulo social completo, é o exemplo mais claro do que gosto de fazer: transformar um problema complexo numa solução elegante e funcional.</p>
         <p>Para além do desenvolvimento, estou genuinamente interessado em <strong>Cibersegurança e Inteligência Artificial</strong>, áreas que quero explorar e seguir profissionalmente.</p>
       </div>
       <div class="sobre-cards reveal">
-        <div class="sobre-card"><div class="card-icon">🎓</div><div class="card-title">Eng. Informática</div><div class="card-desc">Finalista UTAD 2026</div></div>
+        <div class="sobre-card"><div class="card-icon">🎓</div><div class="card-title">Eng. Informática</div><div class="card-desc">Licenciado UTAD 2026</div></div>
         <div class="sobre-card"><div class="card-icon">📍</div><div class="card-title">Porto, Portugal</div><div class="card-desc">Disponível híbrido ou presencial</div></div>
         <div class="sobre-card"><div class="card-icon">🔭</div><div class="card-title">Interesses</div><div class="card-desc">Cybersec · IA · Full-Stack</div></div>
         <div class="sobre-card"><div class="card-icon">⚡</div><div class="card-title">Disponível já</div><div class="card-desc">À procura da primeira oportunidade</div></div>
@@ -763,7 +763,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
         <div class="exp-title">Licenciatura em Engenharia Informática</div>
         <div class="exp-company">UTAD, Universidade de Trás-os-Montes e Alto Douro · Vila Real</div>
         <ul class="exp-bullets">
-          <li>Finalista com apenas uma unidade curricular em falta.</li>
+          <li>Concluída em 2026.</li>
           <li>Projeto final: SmartBikeRoutes, routing geoespacial com React Native + FastAPI + PostGIS.</li>
         </ul>
       </div>
@@ -1033,7 +1033,7 @@ const PROJECTS = {
     screenshots:['sbr-login.jpg','sbr-rota.jpg','sbr-comunidade.jpg','sbr-recentes.jpg','sbr-perfil.jpg','sbr-stats.jpg'],
     tags:[{l:'React Native',c:'purple'},{l:'TypeScript',c:'purple'},{l:'FastAPI',c:'cyan'},{l:'PostgreSQL',c:'cyan'},{l:'PostGIS',c:'cyan'},{l:'pgRouting',c:'cyan'},{l:'OpenStreetMap',c:'purple'},{l:'Expo',c:'purple'}],
     description:`Projeto de final de curso desenvolvido individualmente de raiz. Uma aplicação móvel completa de routing ciclável inteligente que usa dados reais do OpenStreetMap de Vila Real para calcular rotas personalizadas por perfil de ciclista, <strong>lazer, exercício ou commuter</strong>.\n\nCada perfil tem pesos diferentes no algoritmo de routing: o ciclista de lazer prefere rotas mais planas e bonitas; o de exercício privilegia subidas e distância; o commuter quer o caminho mais rápido.\n\nAlém do routing, a app tem um <strong>módulo social completo</strong> com feed de rotas partilhadas, likes, comentários, seguidores, notificações e estatísticas pessoais detalhadas. Integra 4 APIs externas: OpenWeatherMap, OpenTopography, Nominatim e OSM Overpass.`,
-    challenge:`Construir um sistema de routing geoespacial real sobre grafos OSM com dezenas de milhares de nós, garante que as rotas variem dinamicamente consoante o perfil do ciclista e as condições meteorológicas, sem que o tempo de resposta fosse inaceitável para uma app móvel.`,
+    challenge:`Construir um sistema de routing geoespacial real sobre grafos OSM com dezenas de milhares de nós, garantir que as rotas variem dinamicamente consoante o perfil do ciclista e as condições meteorológicas, sem que o tempo de resposta fosse inaceitável para uma app móvel.`,
     solution:`Pipeline FastAPI + PostGIS + pgRouting com algoritmo Dijkstra/A* e sistema de pesos dinâmicos por perfil. O grafo OSM é pré-processado e indexado no PostGIS para queries espaciais rápidas. Integração meteorológica ajusta os pesos em tempo real. Autenticação JWT com refresh tokens e arquitetura modular escalável.`
   },
   dist: {
@@ -1044,7 +1044,7 @@ const PROJECTS = {
     previewType:'phone',
     screenshots:['DASHBOARDSISTEMAS.png','DASHBOARDSISTEMAS2.png','DASHBOARDSISTEMAS3.png','DASHBOARDSISTEMAS4.png','DASHBOARDSISTEMAS5.png'],
     tags:[{l:'C# Sockets',c:'cyan'},{l:'ASP.NET',c:'cyan'},{l:'SQLite',c:'purple'},{l:'TCP/IP',c:'cyan'},{l:'Threads',c:'purple'}],
-    description:`Sistema distribuído de monitorização de sensores ambientais urbanos desenvolvido para a disciplina de Sistemas Distribuídos. A arquitetura é composta por <strong>sensores físicos simulados, gateways intermediários e um servidor central</strong>,todos a comunicar através de um protocolo TCP próprio.\n\nCada sensor reporta dados ambientais (temperatura, CO2, humidade, qualidade do ar) ao gateway mais próximo, que agrega e retransmite ao servidor central. O <strong>dashboard web ASP.NET</strong> apresenta os dados em tempo real com indicadores de estado de cada nó na rede.`,
+    description:`Sistema distribuído de monitorização de sensores ambientais urbanos desenvolvido para a disciplina de Sistemas Distribuídos. A arquitetura é composta por <strong>sensores físicos simulados, gateways intermediários e um servidor central</strong>, todos a comunicar através de um protocolo TCP próprio.\n\nCada sensor reporta dados ambientais (temperatura, CO2, humidade, qualidade do ar) ao gateway mais próximo, que agrega e retransmite ao servidor central. O <strong>dashboard web ASP.NET</strong> apresenta os dados em tempo real com indicadores de estado de cada nó na rede.`,
     challenge:`Garantir comunicação fiável e ordenada entre dezenas de nós numa rede distribuída, sem perda de mensagens, sem deadlocks e com deteção automática de falhas, usando apenas sockets TCP raw sem frameworks de mensageria.`,
     solution:`Protocolo TCP próprio com sistema de ACKs e números de sequência para garantia de entrega ordenada. Heartbeat periódico para detetar nós offline automaticamente. Gestão de concorrência com threads e locks para evitar condições de corrida no acesso à base de dados SQLite partilhada.`
   },
@@ -1067,7 +1067,7 @@ const PROJECTS = {
     previewType:'phone',
     screenshots:['LEVEL1.png','LEVEL1V1.png','LEVEL2.png','LEVEL3.png','LEVEL4.png','LEVEL5.png'],
     tags:[{l:'Three.js',c:'green'},{l:'WebGL',c:'green'},{l:'JavaScript',c:'purple'},{l:'PBR',c:'green'}],
-    description:`Recriação 3D do clássico Bomberman diretamente no browser usando Three.js e WebGL, sem Unity, sem Unreal, sem plugins. O jogo corre a <strong>60fps</strong> com física de colisões, explosões procedurais, materiais PBR e modo split-screen para dois jogadores no mesmo ecrã.\n\nO projeto foi um exercício de perceber como os motores de jogo funcionam por baixo,e depois replicar esses mecanismos em JavaScript puro. Desde o loop de jogo e deteção de colisões até ao sistema de câmera e iluminação dinâmica.`,
+    description:`Recriação 3D do clássico Bomberman diretamente no browser usando Three.js e WebGL, sem Unity, sem Unreal, sem plugins. O jogo corre a <strong>60fps</strong> com física de colisões, explosões procedurais, materiais PBR e modo split-screen para dois jogadores no mesmo ecrã.\n\nO projeto foi um exercício de perceber como os motores de jogo funcionam por baixo, e depois replicar esses mecanismos em JavaScript puro. Desde o loop de jogo e deteção de colisões até ao sistema de câmera e iluminação dinâmica.`,
     challenge:`Renderizar um jogo 3D fluido no browser com física de colisões precisa, explosões procedurais com propagação realista e modo split-screen, tudo em JavaScript puro, sem motores de jogo nem bibliotecas de física.`,
     solution:`Three.js para rendering WebGL com materiais PBR e iluminação dinâmica. Sistema de colisões AABB implementado de raiz. Explosões procedurais com raycasting em 4 direções e propagação progressiva. Split-screen com dois viewports na mesma cena WebGL.`
   }
