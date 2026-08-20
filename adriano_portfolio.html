@@ -809,13 +809,11 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
    PARTICLE NETWORK BACKGROUND
 ════════════════════════════════ */
 (function() {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
   const canvas = document.getElementById('particles-bg');
   const ctx    = canvas.getContext('2d');
   let W, H, particles = [];
   const mouse = { x: null, y: null };
-  const MAX_DIST = 140, MOUSE_DIST = 200;
+  const MAX_DIST = 160, MOUSE_DIST = 220;
 
   function resize() {
     W = canvas.width  = window.innerWidth;
@@ -825,14 +823,14 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 
   function createParticles() {
     particles = [];
-    const count = Math.min(Math.floor((W * H) / 12000), 140);
+    const count = Math.min(Math.floor((W * H) / 9000), 200);
     for (let i = 0; i < count; i++) {
       particles.push({
         x:  Math.random() * W,
         y:  Math.random() * H,
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
-        r:  Math.random() * 1.4 + 0.6
+        r:  Math.random() * 1.6 + 1.0
       });
     }
   }
@@ -864,7 +862,7 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,0.6)';
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
       ctx.fill();
     }
 
