@@ -177,26 +177,6 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .exp-bullets li { font-size:13px; color:var(--muted); line-height:1.7; padding-left:16px; position:relative; margin-bottom:5px; }
 .exp-bullets li::before { content:'▸'; position:absolute; left:0; color:var(--accent); font-size:10px; top:4px; }
 
-/* ══ IA TOOLS ══ */
-.ia-category { margin-bottom:36px; }
-.ia-cat-label { display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; padding:4px 12px; background:var(--bg3); border:1px solid var(--border); border-radius:100px; }
-.ia-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
-.ia-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px; transition:border-color .3s,transform .3s; position:relative; overflow:hidden; }
-.ia-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--grad); opacity:0; transition:opacity .3s; }
-.ia-card:hover { border-color:rgba(108,99,255,.4); transform:translateY(-3px); }
-.ia-card:hover::before { opacity:1; }
-.ia-card.featured { background:linear-gradient(135deg,rgba(108,99,255,.18) 0%,rgba(0,212,255,.1) 100%); border-color:rgba(108,99,255,.7); box-shadow:0 0 0 1px rgba(108,99,255,.3), 0 8px 32px rgba(108,99,255,.25); }
-.ia-card.featured::before { opacity:1; height:3px; }
-.ia-card.featured .ia-name { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:15px; }
-.ia-card.featured:hover { border-color:rgba(108,99,255,.9); box-shadow:0 0 0 1px rgba(108,99,255,.5), 0 12px 40px rgba(108,99,255,.4); transform:translateY(-4px); }
-.ia-card-header { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
-.ia-icon { font-size:22px; }
-.ia-name { font-size:13.5px; font-weight:700; color:#fff; }
-.ia-badge-principal { margin-left:auto; background:var(--grad); color:#fff; font-size:8px; font-weight:800; padding:2px 8px; border-radius:100px; text-transform:uppercase; letter-spacing:.06em; white-space:nowrap; }
-.ia-sub { font-size:10.5px; color:var(--accent); font-weight:600; margin-bottom:10px; }
-.ia-why-label { font-size:9.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px; }
-.ia-why { font-size:11.5px; color:var(--muted); line-height:1.6; }
-
 /* ══ LEARNING ══ */
 .learning-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .learning-card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:32px; position:relative; overflow:hidden; transition:border-color .3s,transform .3s; }
@@ -482,7 +462,6 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
 }
 @media (max-width:600px) {
   .sobre-cards { grid-template-columns:1fr; }
-  .ia-grid { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -519,9 +498,6 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
     </a>
     <a class="sb-link" data-section="experiencia" onclick="navTo('#experiencia')">
       <span class="sb-icon">◷</span><span>Experience</span>
-    </a>
-    <a class="sb-link" data-section="ia" onclick="navTo('#ia')">
-      <span class="sb-icon">✦</span><span>AI tools</span>
     </a>
     <a class="sb-link" data-section="aprender" onclick="navTo('#aprender')">
       <span class="sb-icon">◎</span><span>Currently learning</span>
@@ -766,30 +742,6 @@ footer { border-top:1px solid var(--border); padding:22px 60px; display:flex; ju
           <li>Completed in 2026.</li>
           <li>Final project: SmartBikeRoutes, geospatial routing with React Native + FastAPI + PostGIS.</li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- FERRAMENTAS IA -->
-  <section class="section" id="ia">
-    <div class="section-eyebrow reveal">O meu setup</div>
-    <h2 class="section-title reveal">Ferramentas de IA</h2>
-    <p class="section-sub reveal">As ferramentas que uso no dia-a-dia para desenvolver mais rápido e melhor.</p>
-    <div class="ia-category reveal">
-      <div class="ia-cat-label">✦ Produtividade & Pesquisa</div>
-      <div class="ia-grid">
-        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">🧠</div><div class="ia-name">Claude</div><span class="ia-badge-principal">⭐ N.º 1</span></div><div class="ia-sub">O Melhor para Raciocínio Complexo</div><div class="ia-why-label">Por que é o melhor</div><div class="ia-why">O que me impressiona no Claude é a forma como raciocina. Quando tenho um problema difícil de arquitetura, uma refatoração complicada ou simplesmente preciso de perceber <em>porque</em> algo não funciona, é aqui que vou primeiro. Não dá só uma resposta, pensa com contexto.</div></div>
-        <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">✨</div><div class="ia-name">Gemini</div></div><div class="ia-sub">Pesquisa & Assistente Diário</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Assistente versátil para pesquisa geral, resumos rápidos e tarefas do dia-a-dia que precisam de uma resposta imediata.</div></div>
-        <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">💬</div><div class="ia-name">ChatGPT</div></div><div class="ia-sub">Pesquisa & Exploração</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Uso em conjunto com o Gemini para obter perspetivas complementares em pesquisas e exploração de soluções técnicas.</div></div>
-        <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">📓</div><div class="ia-name">NotebookLM</div></div><div class="ia-sub">Gestão de Conhecimento</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Transforma documentação técnica e notas em resumos interativos, ótimo para estudar novas tecnologias.</div></div>
-      </div>
-    </div>
-    <div class="ia-category reveal">
-      <div class="ia-cat-label">⌨ Desenvolvimento</div>
-      <div class="ia-grid">
-        <div class="ia-card featured"><div class="ia-card-header"><div class="ia-icon">⚡</div><div class="ia-name">Claude Code</div><span class="ia-badge-principal">⭐ N.º 1</span></div><div class="ia-sub">O Agente que Mudou Como Programo</div><div class="ia-why-label">Por que é o melhor</div><div class="ia-why">Não é um autocomplete, é um agente real. Lê o projeto inteiro, percebe o contexto, cria ficheiros, refatora código e executa comandos diretamente no terminal. Desde que comecei a usar, não volto atrás. É o meu parceiro número um.</div></div>
-        <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">🤖</div><div class="ia-name">Codex</div></div><div class="ia-sub">Geração de Código por IA</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Para gerar boilerplate, funções isoladas e snippets rápidos. Útil para explorar padrões de código ou acelerar tarefas repetitivas.</div></div>
-        <div class="ia-card"><div class="ia-card-header"><div class="ia-icon">🎨</div><div class="ia-name">Lovable</div></div><div class="ia-sub">Vibe Coding & UI Design</div><div class="ia-why-label">Por que eu uso</div><div class="ia-why">Para prototipar interfaces rapidamente e transformar ideias em UI funcional sem ter de escrever todo o CSS do zero.</div></div>
       </div>
     </div>
   </section>
