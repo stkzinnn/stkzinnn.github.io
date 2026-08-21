@@ -9,14 +9,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:      #06070F;
-  --surface: #111425;
-  --border:  rgba(255,255,255,.08);
-  --text:    #E8EAF6;
-  --muted:   #6B7094;
-  --accent:  #6C63FF;
-  --accent2: #00D4FF;
-  --grad:    linear-gradient(135deg, #6C63FF 0%, #00D4FF 100%);
+  --bg:      #0A0A0A;
+  --surface: #151515;
+  --border:  rgba(255,255,255,.09);
+  --text:    #EDEDED;
+  --muted:   #8A8A8A;
+  --accent:  #FFFFFF;
 }
 
 body {
@@ -30,7 +28,6 @@ body {
   justify-content: center;
   padding: 24px;
   position: relative;
-  overflow: hidden;
 }
 
 /* ══ PARTICLE CANVAS ══ */
@@ -85,7 +82,7 @@ body {
   border-radius: 50%;
   margin: 0 auto 24px;
   padding: 3px;
-  background: var(--grad);
+  background: rgba(255,255,255,.25);
   position: relative;
 }
 
@@ -110,10 +107,7 @@ h1 {
 }
 
 h1 span {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fff;
 }
 
 .subtitle {
@@ -143,9 +137,9 @@ h1 span {
   font-weight: 600;
   padding: 4px 12px;
   border-radius: 100px;
-  background: rgba(0,212,255,.08);
-  border: 1px solid rgba(0,212,255,.25);
-  color: #67e8f9;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.2);
+  color: var(--text);
   letter-spacing: .02em;
 }
 
@@ -178,14 +172,12 @@ hr {
 }
 
 .link-btn.primary {
-  background: var(--grad);
-  color: #fff;
-  box-shadow: 0 4px 28px rgba(108,99,255,.35);
+  background: var(--accent);
+  color: var(--bg);
 }
 
 .link-btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(108,99,255,.55);
 }
 
 .link-btn.ghost {
@@ -195,8 +187,8 @@ hr {
 }
 
 .link-btn.ghost:hover {
-  border-color: rgba(108,99,255,.4);
-  background: rgba(108,99,255,.08);
+  border-color: rgba(255,255,255,.3);
+  background: rgba(255,255,255,.06);
   transform: translateY(-2px);
 }
 
@@ -208,12 +200,10 @@ hr {
   justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
+  background: rgba(255,255,255,.06);
 }
 
-.link-icon.a { background: rgba(108,99,255,.2); }
-.link-icon.b { background: rgba(0,212,255,.12); }
-.link-icon.c { background: rgba(255,255,255,.06); }
-.link-icon.d { background: rgba(255,107,157,.12); }
+.link-btn.primary .link-icon { background: rgba(10,10,10,.1); }
 
 .link-text { text-align: left; flex: 1; }
 .link-title { font-size: 13.5px; font-weight: 700; display: block; }
@@ -243,9 +233,9 @@ hr {
 }
 
 .soc:hover {
-  border-color: rgba(108,99,255,.4);
+  border-color: rgba(255,255,255,.3);
   color: var(--text);
-  background: rgba(108,99,255,.08);
+  background: rgba(255,255,255,.06);
   transform: translateY(-1px);
 }
 </style>
@@ -263,7 +253,7 @@ hr {
   </div>
 
   <h1>Adriano <span>Ribeiro</span></h1>
-  <p class="subtitle">Engenheiro de Software · Full-Stack</p>
+  <p class="subtitle">Software Engineer · DevOps</p>
   <p class="location">📍 Porto, Portugal · UTAD 2026</p>
   <div class="learning-badges">
     <span class="lbadge">🛡️ Cybersecurity</span>
@@ -275,7 +265,7 @@ hr {
   <div class="links">
 
     <a href="adriano_portfolio.html" class="link-btn primary">
-      <div class="link-icon a">🚀</div>
+      <div class="link-icon">🚀</div>
       <div class="link-text">
         <span class="link-title">Ver Portfolio</span>
         <span class="link-sub">Projetos, skills e experiência completa</span>
@@ -284,7 +274,7 @@ hr {
     </a>
 
     <a href="CV_Adriano_Ribeiro_EN.pdf" target="_blank" class="link-btn ghost">
-      <div class="link-icon b">📄</div>
+      <div class="link-icon">📄</div>
       <div class="link-text">
         <span class="link-title">Curriculum Vitae</span>
         <span class="link-sub">Versão impressa em A4</span>
@@ -293,7 +283,7 @@ hr {
     </a>
 
     <a href="https://github.com/stkzinnn" target="_blank" class="link-btn ghost">
-      <div class="link-icon c">⌨</div>
+      <div class="link-icon">⌨</div>
       <div class="link-text">
         <span class="link-title">GitHub</span>
         <span class="link-sub">github.com/stkzinnn</span>
@@ -302,7 +292,7 @@ hr {
     </a>
 
     <a href="https://mail.google.com/mail/?view=cm&to=adrianoribeiro2554@gmail.com" target="_blank" class="link-btn ghost">
-      <div class="link-icon d">✉</div>
+      <div class="link-icon">✉</div>
       <div class="link-text">
         <span class="link-title">Enviar Email</span>
         <span class="link-sub">adrianoribeiro2554@gmail.com</span>
