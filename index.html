@@ -124,25 +124,6 @@ h1 span {
   margin-bottom: 12px;
 }
 
-.learning-badges {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-
-.lbadge {
-  font-size: 10.5px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 100px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.2);
-  color: var(--text);
-  letter-spacing: .02em;
-}
-
 /* divider */
 hr {
   border: none;
@@ -215,6 +196,7 @@ hr {
 .socials {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -255,10 +237,6 @@ hr {
   <h1>Adriano <span>Ribeiro</span></h1>
   <p class="subtitle">Software Engineer · DevOps</p>
   <p class="location">📍 Porto, Portugal · UTAD 2026</p>
-  <div class="learning-badges">
-    <span class="lbadge">🛡️ Cybersecurity</span>
-    <span class="lbadge">🤖 Inteligência Artificial</span>
-  </div>
 
   <hr>
 
@@ -273,41 +251,20 @@ hr {
       <span class="arrow">→</span>
     </a>
 
-    <a href="CV_Adriano_Ribeiro_EN.pdf" target="_blank" class="link-btn ghost">
-      <div class="link-icon">📄</div>
-      <div class="link-text">
-        <span class="link-title">Curriculum Vitae</span>
-        <span class="link-sub">Versão impressa em A4</span>
-      </div>
-      <span class="arrow">→</span>
-    </a>
-
-    <a href="https://github.com/stkzinnn" target="_blank" class="link-btn ghost">
-      <div class="link-icon">⌨</div>
-      <div class="link-text">
-        <span class="link-title">GitHub</span>
-        <span class="link-sub">github.com/stkzinnn</span>
-      </div>
-      <span class="arrow">↗</span>
-    </a>
-
-    <a href="https://mail.google.com/mail/?view=cm&to=adrianoribeiro2554@gmail.com" target="_blank" class="link-btn ghost">
-      <div class="link-icon">✉</div>
-      <div class="link-text">
-        <span class="link-title">Enviar Email</span>
-        <span class="link-sub">adrianoribeiro2554@gmail.com</span>
-      </div>
-      <span class="arrow">→</span>
-    </a>
-
   </div>
 
   <div class="socials">
+    <a href="CV_Adriano_Ribeiro_EN.pdf" target="_blank" class="soc">
+      📄 CV
+    </a>
     <a href="https://linkedin.com/in/adrianoribeiro-informatic" target="_blank" class="soc">
       💼 LinkedIn
     </a>
     <a href="https://github.com/stkzinnn" target="_blank" class="soc">
       ⌨ GitHub
+    </a>
+    <a href="https://mail.google.com/mail/?view=cm&to=adrianoribeiro2554@gmail.com" target="_blank" class="soc">
+      ✉ Email
     </a>
   </div>
 
