@@ -24,7 +24,7 @@ body {
   background: #fff;
   box-shadow: 0 20px 80px rgba(0,0,0,.25);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .cv::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:#0F1117; z-index:10; }
@@ -33,14 +33,14 @@ body {
 .cv-header {
   background: #0F1117;
   color: #E8EAF6;
-  padding: 26px 40px;
+  padding: 18px 40px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
 .photo-wrap {
-  width: 66px; height: 66px;
+  width: 54px; height: 54px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -57,21 +57,21 @@ body {
 }
 
 .cv-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -.03em;
   color: #fff;
   line-height: 1.1;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .cv-role {
-  font-size: 10.5px;
+  font-size: 9.5px;
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: .1em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .cv-contacts {
@@ -89,19 +89,19 @@ body {
 
 /* ── BODY ── */
 .cv-body {
-  padding: 22px 40px 26px;
+  padding: 16px 40px 20px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 13px;
 }
 
 .section-head {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: #0F1117;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -116,12 +116,12 @@ body {
 
 /* PROFILE */
 .profile-text {
-  font-size: 9.5px;
+  font-size: 9px;
   color: #4B5563;
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
-.profile-text p { margin-bottom: 6px; }
+.profile-text p { margin-bottom: 4px; }
 .profile-text p:last-child { margin-bottom: 0; }
 
 .profile-text strong { color: #1F2937; }
@@ -136,7 +136,7 @@ body {
 
 .timeline-item {
   position: relative;
-  padding-bottom: 16px;
+  padding-bottom: 10px;
 }
 
 .timeline-item:last-child { padding-bottom: 0; }
@@ -163,22 +163,22 @@ body {
   margin-bottom: 2px;
 }
 
-.timeline-title { font-size: 12px; font-weight: 700; color: #1F2937; margin-bottom: 1px; }
-.timeline-sub { font-size: 10px; color: #6B7280; font-weight: 500; margin-bottom: 4px; }
-.timeline-desc { font-size: 9.5px; color: #4B5563; line-height: 1.55; }
+.timeline-title { font-size: 11px; font-weight: 700; color: #1F2937; margin-bottom: 1px; }
+.timeline-sub { font-size: 9.5px; color: #6B7280; font-weight: 500; margin-bottom: 3px; }
+.timeline-desc { font-size: 9px; color: #4B5563; line-height: 1.45; }
 
 /* ── PROJECTS ── */
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
 .pc {
   background: #F8F9FB;
   border: 1px solid #E5E7EB;
-  border-radius: 10px;
-  padding: 9px 12px;
+  border-radius: 9px;
+  padding: 7px 10px;
   border-left: 3px solid #0F1117;
 }
 
-.pc-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.pc-head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
 .pc-icon { font-size: 13px; line-height: 1; }
 .pc-name { font-size: 11.5px; font-weight: 800; color: #1F2937; letter-spacing: -.01em; }
 .pc-badge {
@@ -193,7 +193,7 @@ body {
   border-radius: 100px;
 }
 
-.pc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.pc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
 .pc-tag {
   font-size: 8px;
   font-weight: 600;
@@ -212,12 +212,12 @@ body {
 
 .pc-points { list-style: none; }
 .pc-points li {
-  font-size: 9px;
+  font-size: 8.5px;
   color: #4B5563;
-  line-height: 1.5;
+  line-height: 1.4;
   padding-left: 11px;
   position: relative;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 .pc-points li:last-child { margin-bottom: 0; }
 .pc-points li::before {
@@ -233,8 +233,8 @@ body {
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 20px;
-  padding-top: 4px;
+  gap: 16px;
+  padding-top: 10px;
   border-top: 1px solid #E5E7EB;
 }
 
@@ -282,7 +282,7 @@ body {
 /* PRINT */
 @media print {
   body { background: none; padding: 0; }
-  .cv { box-shadow: none; width: 210mm; height: 297mm; min-height: unset; overflow: hidden; }
+  .cv { box-shadow: none; width: 210mm; min-height: 297mm; overflow: visible; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   @page { size: A4; margin: 0; }
 }
@@ -319,7 +319,7 @@ body {
     <section>
       <div class="section-head">Profile</div>
       <div class="profile-text">
-        <p>Computer Engineering graduate from UTAD with a strong interest in Software Engineering and DevOps. I enjoy working across the full stack, from backend systems and databases to deployment and infrastructure.</p>
+        <p>Final-year Computer Engineering student at UTAD, with one course remaining, with a strong interest in Software Engineering and DevOps. I enjoy working across the full stack, from backend systems and databases to deployment and infrastructure.</p>
         <p>My final-year project, <strong>SmartBikeRoutes</strong>, combined real OpenStreetMap routing, weather conditions and geospatial data into a full-stack application for cyclists. I'm also building <strong>PitWall</strong>, an F1 race strategy simulator using real telemetry data, FastAPI, PostgreSQL, Docker, CI/CD and Kubernetes.</p>
         <p>Alongside this, I've been deepening my Linux knowledge through pwn.college and expanding my understanding of advanced DevOps practices, including monitoring, logging, scalability and Kubernetes.</p>
         <p>Alongside my technical background, I have gained professional experience as a Sales Specialist at Endesa, managing the full customer acquisition process from prospecting to negotiation. This experience strengthened my communication, negotiation, resilience, and problem-solving skills while balancing professional responsibilities with my Computer Engineering degree.</p>
@@ -346,7 +346,7 @@ body {
 
         <div class="timeline-item">
           <div class="timeline-date">2026</div>
-          <div class="timeline-title">Completed BSc in Computer Engineering</div>
+          <div class="timeline-title">Final year, one course remaining</div>
           <div class="timeline-sub">Final project: SmartBikeRoutes – geospatial routing with React Native, FastAPI, PostGIS</div>
         </div>
 

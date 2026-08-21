@@ -33,35 +33,8 @@ body {
   overflow: hidden;
 }
 
-/* background glow blobs */
-body::before {
-  content: '';
-  position: fixed;
-  width: 600px; height: 600px;
-  top: -200px; right: -150px;
-  background: radial-gradient(circle, rgba(108,99,255,.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  width: 500px; height: 500px;
-  bottom: -150px; left: -100px;
-  background: radial-gradient(circle, rgba(0,212,255,.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* grid */
-.grid-bg {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(108,99,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(108,99,255,.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
+/* ══ PARTICLE CANVAS ══ */
+#particles-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
 .card {
   background: var(--surface);
@@ -279,7 +252,7 @@ hr {
 </head>
 <body>
 
-<div class="grid-bg"></div>
+<canvas id="particles-bg"></canvas>
 
 <div class="card">
 
@@ -310,7 +283,7 @@ hr {
       <span class="arrow">→</span>
     </a>
 
-    <a href="CV_Adriano_Ribeiro.pdf" target="_blank" class="link-btn ghost">
+    <a href="CV_Adriano_Ribeiro_PT.html" target="_blank" class="link-btn ghost">
       <div class="link-icon b">📄</div>
       <div class="link-text">
         <span class="link-title">Curriculum Vitae</span>
@@ -350,5 +323,109 @@ hr {
 
 </div>
 
+<script>
+/* ════════════════════════════════
+   PARTICLE NETWORK BACKGROUND
+════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('particles-bg');
+  const ctx    = canvas.getContext('2d');
+  let W, H, particles = [];
+  const mouse = { x: null, y: null };
+  const MAX_DIST = 160, MOUSE_DIST = 220;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    createParticles();
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.min(Math.floor((W * H) / 9000), 200);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r:  Math.random() * 1.6 + 1.0
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (mouse.x !== null) {
+        const dx = mouse.x - p.x, dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_DIST && dist > 0) {
+          const force = (1 - dist / MOUSE_DIST) * 0.6;
+          p.vx -= (dx / dist) * force;
+          p.vy -= (dy / dist) * force;
+        }
+      }
+
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+      const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      if (speed < 0.15) { p.vx += (Math.random() - 0.5) * 0.08; p.vy += (Math.random() - 0.5) * 0.08; }
+
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.fill();
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+
+      if (mouse.x !== null) {
+        const dx = particles[i].x - mouse.x, dy = particles[i].y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_DIST) {
+          const alpha = (1 - dist / MOUSE_DIST) * 0.45;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+  window.addEventListener('resize', resize);
+
+  resize();
+  draw();
+})();
+</script>
 </body>
 </html>
