@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="pt">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,36 +21,30 @@ body {
 .cv {
   width: 210mm;
   min-height: 297mm;
-  background: linear-gradient(to right, #0F1117 72mm, #F8F9FB 72mm);
-  display: grid;
-  grid-template-columns: 72mm 1fr;
+  background: #fff;
   box-shadow: 0 20px 80px rgba(0,0,0,.25);
   position: relative;
   overflow: hidden;
 }
 
-/* ── SIDEBAR ── */
-.sidebar {
+.cv::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:#0F1117; z-index:10; }
+
+/* ── HEADER ── */
+.cv-header {
   background: #0F1117;
   color: #E8EAF6;
-  padding: 18px 18px 20px;
+  padding: 26px 40px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.sidebar-header {
-  text-align: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  align-items: center;
+  gap: 20px;
 }
 
 .photo-wrap {
-  width: 68px; height: 68px;
+  width: 66px; height: 66px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 8px;
-  border: 2.5px solid #6C63FF;
+  flex-shrink: 0;
+  border: 2.5px solid rgba(255,255,255,.3);
   background: #1A1D2E;
 }
 
@@ -62,138 +56,51 @@ body {
   display: block;
 }
 
-.sidebar-name {
-  font-size: 17px;
+.cv-name {
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: -.02em;
+  letter-spacing: -.03em;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.1;
   margin-bottom: 4px;
 }
 
-.sidebar-role {
-  font-size: 10px;
-  color: #6C63FF;
+.cv-role {
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: .14em;
+  color: #FFFFFF;
+  letter-spacing: .1em;
   text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.sidebar-section-title {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: #6C63FF;
-  margin-bottom: 7px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(108,99,255,.25);
-}
-
-/* CONTACTO */
-.contact-item {
+.cv-contacts {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
   font-size: 9.5px;
   color: #9CA3AF;
-  line-height: 1.4;
 }
 
-.contact-icon { font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+.cv-contacts a { color: #9CA3AF; text-decoration: none; }
+.cv-contacts a:hover { color: #fff; }
+.cv-contacts .sep { color: #4B5563; }
 
-.contact-item a {
-  color: #9CA3AF;
-  text-decoration: none;
-}
-
-.contact-item a:hover { color: #6C63FF; }
-
-/* SKILLS TAGS */
-.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-
-.stag {
-  font-size: 9.5px;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 100px;
-  background: rgba(108,99,255,.15);
-  border: 1px solid rgba(108,99,255,.3);
-  color: #a8a3ff;
-}
-
-/* IDIOMAS */
-.lang-item { margin-bottom: 7px; }
-.lang-name { font-size: 9.5px; font-weight: 600; color: #E8EAF6; margin-bottom: 3px; display: flex; justify-content: space-between; }
-.lang-level { font-size: 9px; color: #6B7094; }
-.lang-bar { height: 3px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden; }
-.lang-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #6C63FF, #00D4FF); }
-
-/* SOFT SKILLS */
-.soft-skill {
-  font-size: 9.5px;
-  color: #9CA3AF;
-  padding: 2px 0;
-  padding-left: 12px;
-  position: relative;
-}
-
-.soft-skill::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: #6C63FF;
-  font-size: 9px;
-}
-
-/* LOCALIZAÇÃO */
-.location-info { font-size: 10.5px; color: #9CA3AF; line-height: 1.7; }
-
-/* ── MAIN ── */
-.main {
-  background: #F8F9FB;
-  padding: 22px 28px 24px;
+/* ── BODY ── */
+.cv-body {
+  padding: 22px 40px 26px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.main-header {
-  padding-bottom: 14px;
-  border-bottom: 2px solid #E5E7EB;
-}
-
-.main-name {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: -.04em;
-  color: #0F1117;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.main-name span {
-  background: linear-gradient(135deg, #6C63FF, #00D4FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.main-role {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #6B7094;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  gap: 18px;
 }
 
 .section-head {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
-  letter-spacing: .14em;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  color: #6C63FF;
+  color: #0F1117;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -207,134 +114,170 @@ body {
   background: #E5E7EB;
 }
 
-/* PERFIL */
-.perfil-text {
-  font-size: 10.5px;
-  color: #4B5563;
-  line-height: 1.65;
-}
-
-.perfil-text strong { color: #1F2937; }
-
-/* FORMAÇÃO */
-.edu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 8px 0;
-  border-bottom: 1px solid #F0F1F5;
-}
-
-.edu-left { flex: 1; }
-.edu-degree { font-size: 12.5px; font-weight: 700; color: #1F2937; margin-bottom: 2px; }
-.edu-school { font-size: 10.5px; color: #6B7094; font-weight: 500; }
-.edu-detail { font-size: 10px; color: #9CA3AF; margin-top: 4px; line-height: 1.5; }
-.edu-date {
+/* PROFILE */
+.profile-text {
   font-size: 9.5px;
-  font-weight: 700;
-  color: #6C63FF;
-  background: rgba(108,99,255,.1);
-  border: 1px solid rgba(108,99,255,.2);
-  border-radius: 6px;
-  padding: 3px 8px;
-  white-space: nowrap;
-  margin-left: 12px;
-}
-
-/* EXPERIÊNCIA */
-.exp-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #F0F1F5;
-}
-
-.exp-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 4px;
-}
-
-.exp-title { font-size: 12.5px; font-weight: 700; color: #1F2937; }
-.exp-date-tag {
-  font-size: 9.5px;
-  font-weight: 700;
-  color: #6C63FF;
-  background: rgba(108,99,255,.1);
-  border: 1px solid rgba(108,99,255,.2);
-  border-radius: 6px;
-  padding: 3px 8px;
-  white-space: nowrap;
-}
-
-.exp-company { font-size: 10.5px; color: #6B7094; margin-bottom: 8px; font-weight: 500; }
-
-.exp-ul { list-style: none; }
-.exp-ul li {
-  font-size: 10.5px;
   color: #4B5563;
-  line-height: 1.6;
-  padding-left: 12px;
-  position: relative;
-  margin-bottom: 3px;
-}
-
-.exp-ul li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: #6C63FF;
-  font-size: 9px;
-  top: 1px;
-}
-
-/* PROJETOS */
-.project-cards { display: flex; flex-direction: column; gap: 7px; }
-
-.pc {
-  background: #fff;
-  border: 1px solid #E5E7EB;
-  border-radius: 10px;
-  padding: 9px 12px;
-  border-left: 3px solid #6C63FF;
-}
-
-.pc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
-.pc-name { font-size: 11.5px; font-weight: 700; color: #1F2937; }
-
-.pc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.pc-tag {
-  font-size: 8.5px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 4px;
-  background: rgba(108,99,255,.08);
-  border: 1px solid rgba(108,99,255,.15);
-  color: #6C63FF;
-}
-
-.pc-desc {
-  font-size: 10px;
-  color: #6B7094;
   line-height: 1.55;
 }
 
-/* TOP BAR */
-.cv::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#6C63FF,#00D4FF); z-index:10; }
+.profile-text p { margin-bottom: 6px; }
+.profile-text p:last-child { margin-bottom: 0; }
 
-/* INTERESSE TAGS */
-.interest-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.profile-text strong { color: #1F2937; }
+
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  margin-left: 4px;
+  padding-left: 22px;
+  border-left: 2px solid #E5E7EB;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -27px;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0F1117;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #0F1117;
+}
+
+.timeline-date {
+  font-size: 9px;
+  font-weight: 700;
+  color: #0F1117;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 2px;
+}
+
+.timeline-title { font-size: 12px; font-weight: 700; color: #1F2937; margin-bottom: 1px; }
+.timeline-sub { font-size: 10px; color: #6B7280; font-weight: 500; margin-bottom: 4px; }
+.timeline-desc { font-size: 9.5px; color: #4B5563; line-height: 1.55; }
+
+/* ── PROJECTS ── */
+.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.pc {
+  background: #F8F9FB;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 9px 12px;
+  border-left: 3px solid #0F1117;
+}
+
+.pc-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.pc-icon { font-size: 13px; line-height: 1; }
+.pc-name { font-size: 11.5px; font-weight: 800; color: #1F2937; letter-spacing: -.01em; }
+.pc-badge {
+  margin-left: auto;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #0F1117;
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+.pc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.pc-tag {
+  font-size: 8px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(15,17,23,.05);
+  border: 1px solid rgba(15,17,23,.12);
+  color: #0F1117;
+}
+
+.pc-desc {
+  font-size: 9px;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.pc-points { list-style: none; }
+.pc-points li {
+  font-size: 9px;
+  color: #4B5563;
+  line-height: 1.5;
+  padding-left: 11px;
+  position: relative;
+  margin-bottom: 2px;
+}
+.pc-points li:last-child { margin-bottom: 0; }
+.pc-points li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0F1117;
+  font-size: 8px;
+}
+
+/* ── FOOTER GRID (skills / languages / soft skills / focus) ── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding-top: 4px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.stag {
+  font-size: 8.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(15,17,23,.05);
+  border: 1px solid rgba(15,17,23,.15);
+  color: #1F2937;
+}
+
+.lang-item { margin-bottom: 7px; }
+.lang-name { font-size: 9.5px; font-weight: 600; color: #1F2937; margin-bottom: 3px; display: flex; justify-content: space-between; }
+.lang-level { font-size: 8.5px; color: #6B7280; font-weight: 500; }
+.lang-bar { height: 3px; background: #E5E7EB; border-radius: 2px; overflow: hidden; }
+.lang-fill { height: 100%; border-radius: 2px; background: #0F1117; }
+
+.soft-skill {
+  font-size: 9px;
+  color: #4B5563;
+  padding: 2px 0;
+  padding-left: 12px;
+  position: relative;
+}
+
+.soft-skill::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #0F1117;
+  font-size: 8px;
+}
+
+.interest-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom: 8px; }
 .itag {
-  font-size:9px; font-weight:600; padding:3px 9px; border-radius:100px;
-  background:rgba(0,212,255,.12); border:1px solid rgba(0,212,255,.25); color:#67e8f9;
+  font-size:8.5px; font-weight:600; padding:2px 8px; border-radius:100px;
+  background:#0F1117; border:1px solid #0F1117; color:#fff;
 }
 
-/* CALLOUT OBJETIVOS */
-.objetivo-box {
-  background:#F0F7FF; border:1px solid #DBEAFE; border-left:3px solid #6C63FF;
-  border-radius:8px; padding:10px 12px; margin-top:6px;
-}
-.objetivo-box p { font-size:10px; color:#374151; line-height:1.65; }
-.objetivo-box strong { color:#1F2937; }
+.footer-note { font-size: 8.5px; color: #6B7280; line-height: 1.5; }
 
 /* PRINT */
 @media print {
@@ -349,212 +292,206 @@ body {
 
 <div class="cv">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <div class="sidebar-header">
-      <div class="photo-wrap">
-        <img src="foto.png" alt="Adriano Ribeiro">
-      </div>
-      <div class="sidebar-name">Adriano Vilarinho Ribeiro</div>
-      <div class="sidebar-role">Engenheiro de Software</div>
+  <!-- HEADER -->
+  <header class="cv-header">
+    <div class="photo-wrap">
+      <img src="fotoparaCV.png" alt="Adriano Ribeiro">
     </div>
-
-    <!-- CONTACTO -->
     <div>
-      <div class="sidebar-section-title">Contacto</div>
-      <div class="contact-item">
-        <span class="contact-icon">✉</span>
-        <span>adrianoribeiro2554@gmail.com</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">💼</span>
+      <div class="cv-name">Adriano Vilarinho Ribeiro</div>
+      <div class="cv-role">Software Engineer · DevOps</div>
+      <div class="cv-contacts">
+        <span>✉ adrianoribeiro2554@gmail.com</span>
+        <span class="sep">·</span>
         <a href="https://linkedin.com/in/adrianoribeiro-informatic" target="_blank">linkedin.com/in/adrianoribeiro-informatic</a>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">⌨</span>
+        <span class="sep">·</span>
         <a href="https://github.com/stkzinnn" target="_blank">github.com/stkzinnn</a>
+        <span class="sep">·</span>
+        <span>📍 Porto, Portugal</span>
       </div>
     </div>
+  </header>
 
-    <!-- SKILLS TÉCNICAS -->
-    <div>
-      <div class="sidebar-section-title">Stack Técnico</div>
-      <div class="skill-tags">
-        <span class="stag">TypeScript</span>
-        <span class="stag">Python</span>
-        <span class="stag">C#</span>
-        <span class="stag">SQL</span>
-        <span class="stag">React Native</span>
-        <span class="stag">FastAPI</span>
-        <span class="stag">.NET / WPF</span>
-        <span class="stag">Three.js</span>
-        <span class="stag">PostgreSQL</span>
-        <span class="stag">PostGIS</span>
-        <span class="stag">pgRouting</span>
-        <span class="stag">Git</span>
-        <span class="stag">REST API</span>
-        <span class="stag">JWT</span>
-        <span class="stag">OpenStreetMap</span>
-        <span class="stag">Power BI</span>
+  <!-- BODY -->
+  <main class="cv-body">
+
+    <!-- PROFILE -->
+    <section>
+      <div class="section-head">Profile</div>
+      <div class="profile-text">
+        <p>Computer Engineering graduate from UTAD with a strong interest in Software Engineering and DevOps. I enjoy working across the full stack, from backend systems and databases to deployment and infrastructure.</p>
+        <p>My final-year project, <strong>SmartBikeRoutes</strong>, combined real OpenStreetMap routing, weather conditions and geospatial data into a full-stack application for cyclists. I'm also building <strong>PitWall</strong>, an F1 race strategy simulator using real telemetry data, FastAPI, PostgreSQL, Docker, CI/CD and Kubernetes.</p>
+        <p>Alongside this, I've been deepening my Linux knowledge through pwn.college and expanding my understanding of advanced DevOps practices, including monitoring, logging, scalability and Kubernetes.</p>
+        <p>Alongside my technical background, I have gained professional experience as a Sales Specialist at Endesa, managing the full customer acquisition process from prospecting to negotiation. This experience strengthened my communication, negotiation, resilience, and problem-solving skills while balancing professional responsibilities with my Computer Engineering degree.</p>
       </div>
-    </div>
+    </section>
 
-    <!-- IDIOMAS -->
-    <div>
-      <div class="sidebar-section-title">Idiomas</div>
-      <div class="lang-item">
-        <div class="lang-name">Português <span class="lang-level">Nativo</span></div>
-        <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
-      </div>
-      <div class="lang-item">
-        <div class="lang-name">Inglês <span class="lang-level">B2, Fluente</span></div>
-        <div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div>
-      </div>
-      <div class="lang-item">
-        <div class="lang-name">Espanhol <span class="lang-level">A2, Básico</span></div>
-        <div class="lang-bar"><div class="lang-fill" style="width:35%"></div></div>
-      </div>
-    </div>
+    <!-- JOURNEY / TIMELINE -->
+    <section>
+      <div class="section-head">Journey</div>
+      <div class="timeline">
 
-    <!-- SOFT SKILLS -->
-    <div>
-      <div class="sidebar-section-title">Soft Skills</div>
-      <div class="soft-skill">Comunicação com cliente</div>
-      <div class="soft-skill">Resolução de problemas</div>
-      <div class="soft-skill">Trabalho em equipa</div>
-      <div class="soft-skill">Autogestão & autonomia</div>
-      <div class="soft-skill">Aprendizagem rápida</div>
-      <div class="soft-skill">Atenção ao detalhe</div>
-    </div>
-
-    <!-- INTERESSES -->
-    <div>
-      <div class="sidebar-section-title">Objetivos de Carreira</div>
-      <div class="interest-tags">
-        <span class="itag">🛡️ Cibersegurança</span>
-        <span class="itag">🤖 Inteligência Artificial</span>
-        <span class="itag">🔐 Pentesting</span>
-        <span class="itag">🧠 Machine Learning</span>
-      </div>
-      <div style="font-size:9.5px;color:#6B7094;margin-top:8px;line-height:1.6;">Áreas em que estou a investir ativamente e onde quero crescer profissionalmente.</div>
-    </div>
-
-    <!-- LOCALIZAÇÃO -->
-    <div>
-      <div class="sidebar-section-title">Localização</div>
-      <div class="location-info">
-        Porto, Portugal
-      </div>
-    </div>
-
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <div class="main-header">
-      <div class="main-name">Adriano <span>Ribeiro</span></div>
-      <div class="main-role">Engenheiro de Software · Finalista UTAD 2026</div>
-    </div>
-
-    <!-- PERFIL -->
-    <div>
-      <div class="section-head">Perfil</div>
-      <p class="perfil-text">
-        Finalista em Engenharia Informática na UTAD, com apenas <strong>uma unidade curricular em falta</strong>. Desenvolvi o meu projeto de final de curso de raiz: <strong>SmartBikeRoutes</strong>, uma app móvel de routing ciclável inteligente com dados OSM reais, meteorologia em tempo real e rede social integrada. Concilio a vida académica com trabalho a tempo parcial na Endesa há 3 anos, o que reforçou a minha capacidade de comunicação e empatia com o utilizador final. Estou genuinamente motivado para entrar e crescer nas áreas de <strong>Cibersegurança e Inteligência Artificial</strong>, e estou disposto a aprender a fundo o que for necessário para isso.
-      </p>
-    </div>
-
-    <!-- FORMAÇÃO -->
-    <div>
-      <div class="section-head">Formação Académica</div>
-      <div class="edu-item">
-        <div class="edu-left">
-          <div class="edu-degree">Licenciatura em Engenharia Informática</div>
-          <div class="edu-school">UTAD – Universidade de Trás-os-Montes e Alto Douro · Vila Real</div>
-          <div class="edu-detail">Finalista, 1 UC em falta. Projeto final: SmartBikeRoutes (routing geoespacial + social).</div>
+        <div class="timeline-item">
+          <div class="timeline-date">2022</div>
+          <div class="timeline-title">Started BSc in Computer Engineering</div>
+          <div class="timeline-sub">UTAD, University of Trás-os-Montes and Alto Douro · Vila Real, Portugal</div>
         </div>
-        <div class="edu-date">2022 – 2026</div>
-      </div>
-    </div>
 
-    <!-- EXPERIÊNCIA -->
-    <div>
-      <div class="section-head">Experiência Profissional</div>
-      <div class="exp-item">
-        <div class="exp-top">
-          <div class="exp-title">Sales Specialist</div>
-          <div class="exp-date-tag">2023 – Presente</div>
+        <div class="timeline-item">
+          <div class="timeline-date">2023 – Present</div>
+          <div class="timeline-title">Sales Specialist</div>
+          <div class="timeline-sub">Endesa · Part-time · Porto, Portugal</div>
+          <div class="timeline-desc">Managed the full customer acquisition cycle, from prospecting to negotiation, while balancing a full academic workload throughout the degree.</div>
         </div>
-        <div class="exp-company">Endesa · Part-time · Porto, Portugal</div>
-        <ul class="exp-ul">
-          <li>Gestão do ciclo completo de aquisição de clientes, da prospeção à proposta personalizada.</li>
-          <li>Desenvolveu forte capacidade de comunicação, negociação e empatia com o utilizador final.</li>
-          <li>Conciliação com carga académica completa durante toda a licenciatura.</li>
-        </ul>
-      </div>
-    </div>
 
-    <!-- PROJETOS -->
-    <div>
-      <div class="section-head">Projetos</div>
-      <div class="project-cards">
+        <div class="timeline-item">
+          <div class="timeline-date">2026</div>
+          <div class="timeline-title">Completed BSc in Computer Engineering</div>
+          <div class="timeline-sub">Final project: SmartBikeRoutes – geospatial routing with React Native, FastAPI, PostGIS</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Now</div>
+          <div class="timeline-title">Building PitWall</div>
+          <div class="timeline-sub">F1 race strategy simulator · also my hands-on introduction to DevOps (Docker, CI/CD & Kubernetes)</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <div class="section-head">Selected Projects</div>
+      <div class="project-grid">
 
         <div class="pc">
-          <div class="pc-header">
-            <div class="pc-name">🚴 SmartBikeRoutes, Projeto Principal</div>
-            <div class="pc-tags">
-              <span class="pc-tag">React Native</span>
-              <span class="pc-tag">FastAPI</span>
-              <span class="pc-tag">PostGIS</span>
-              <span class="pc-tag">pgRouting</span>
-              <span class="pc-tag">OSM</span>
-            </div>
+          <div class="pc-head"><span class="pc-icon">🏁</span><span class="pc-name">PitWall</span><span class="pc-badge">Currently building</span></div>
+          <div class="pc-tags">
+            <span class="pc-tag">Docker</span>
+            <span class="pc-tag">GitHub Actions</span>
+            <span class="pc-tag">CD</span>
+            <span class="pc-tag">Kubernetes</span>
+            <span class="pc-tag">FastAPI</span>
+            <span class="pc-tag">PostgreSQL</span>
           </div>
-          <div class="pc-desc">App móvel de routing ciclável por perfil (lazer/exercício/commuter) com grafos OSM reais, meteorologia em tempo real, elevação, módulo social completo (feed, likes, follows, notificações) e exportação GPX.</div>
+          <ul class="pc-points">
+            <li>Reconstructs real F1 races from telemetry, simulates alternative pit strategies</li>
+            <li>91 automated tests, 99% coverage, live in production with CI/CD on every push</li>
+          </ul>
         </div>
 
         <div class="pc">
-          <div class="pc-header">
-            <div class="pc-name">🌐 Sistema de Monitorização Urbana</div>
-            <div class="pc-tags">
-              <span class="pc-tag">C# Sockets</span>
-              <span class="pc-tag">ASP.NET</span>
-              <span class="pc-tag">TCP/IP</span>
-              <span class="pc-tag">SQLite</span>
-            </div>
+          <div class="pc-head"><span class="pc-icon">🚴</span><span class="pc-name">SmartBikeRoutes</span></div>
+          <div class="pc-tags">
+            <span class="pc-tag">React Native</span>
+            <span class="pc-tag">FastAPI</span>
+            <span class="pc-tag">PostGIS</span>
+            <span class="pc-tag">pgRouting</span>
           </div>
-          <div class="pc-desc">Rede distribuída de sensores One Health com gateways e servidor central. Protocolo TCP próprio com ACKs, heartbeat e concorrência via threads. Dashboard web com dados em tempo real.</div>
+          <ul class="pc-points">
+            <li>Cycling routes weighted by gradient, live weather, and rider profile, not just distance</li>
+            <li>Full social platform: feed, likes, follows, notifications, GPX export</li>
+          </ul>
         </div>
 
         <div class="pc">
-          <div class="pc-header">
-            <div class="pc-name">📋 GestoDocente</div>
-            <div class="pc-tags">
-              <span class="pc-tag">C# / WPF</span>
-              <span class="pc-tag">.NET</span>
-              <span class="pc-tag">MVVM</span>
-              <span class="pc-tag">SQLite</span>
-            </div>
+          <div class="pc-head"><span class="pc-icon">🌐</span><span class="pc-name">Urban Monitoring System</span></div>
+          <div class="pc-tags">
+            <span class="pc-tag">C# Sockets</span>
+            <span class="pc-tag">ASP.NET</span>
+            <span class="pc-tag">TCP/IP</span>
           </div>
-          <div class="pc-desc">Aplicação desktop para gestão de dados docentes em arquitetura MVVM. Separação total entre View (XAML), ViewModel e Model, data binding bidirecional com INotifyPropertyChanged e injeção de dependências para UI totalmente reativa.</div>
+          <ul class="pc-points">
+            <li>Distributed sensor network with a custom TCP protocol: ACKs, heartbeat, auto failure detection</li>
+            <li>Real-time web dashboard showing every node's status</li>
+          </ul>
         </div>
 
         <div class="pc">
-          <div class="pc-header">
-            <div class="pc-name">🎮 Bomberman3D</div>
-            <div class="pc-tags">
-              <span class="pc-tag">Three.js</span>
-              <span class="pc-tag">WebGL</span>
-              <span class="pc-tag">JavaScript</span>
-            </div>
+          <div class="pc-head"><span class="pc-icon">📋</span><span class="pc-name">GestoDocente</span></div>
+          <div class="pc-tags">
+            <span class="pc-tag">C# / WPF</span>
+            <span class="pc-tag">MVVM</span>
           </div>
-          <div class="pc-desc">Recriação 3D do clássico Bomberman no browser com Three.js e WebGL puro, sem motores de jogo. Física de colisões AABB, explosões procedurais com propagação realista, materiais PBR e modo split-screen para dois jogadores.</div>
+          <ul class="pc-points">
+            <li>Academic staff management app with a clean MVVM architecture</li>
+            <li>Two-way data binding, dependency injection, fully decoupled layers</li>
+          </ul>
+        </div>
+
+        <div class="pc">
+          <div class="pc-head"><span class="pc-icon">🎮</span><span class="pc-name">Bomberman3D</span></div>
+          <div class="pc-tags">
+            <span class="pc-tag">Three.js</span>
+            <span class="pc-tag">WebGL</span>
+          </div>
+          <ul class="pc-points">
+            <li>3D Bomberman in the browser, no game engine — custom collisions and split-screen</li>
+          </ul>
         </div>
 
       </div>
-    </div>
+    </section>
+
+    <!-- FOOTER GRID -->
+    <section class="footer-grid">
+
+      <div>
+        <div class="section-head">Technical Stack</div>
+        <div class="skill-tags">
+          <span class="stag">TypeScript</span>
+          <span class="stag">Python</span>
+          <span class="stag">C#</span>
+          <span class="stag">SQL</span>
+          <span class="stag">React Native</span>
+          <span class="stag">FastAPI</span>
+          <span class="stag">.NET / WPF</span>
+          <span class="stag">Three.js</span>
+          <span class="stag">PostgreSQL</span>
+          <span class="stag">PostGIS</span>
+          <span class="stag">Docker</span>
+          <span class="stag">Kubernetes</span>
+          <span class="stag">GitHub Actions</span>
+          <span class="stag">Git</span>
+          <span class="stag">REST API</span>
+          <span class="stag">JWT</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-head">Languages</div>
+        <div class="lang-item">
+          <div class="lang-name">Portuguese <span class="lang-level">Native</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">English <span class="lang-level">B2</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Spanish <span class="lang-level">A2</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:35%"></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-head">Soft Skills</div>
+        <div class="soft-skill">Customer Communication</div>
+        <div class="soft-skill">Problem Solving</div>
+        <div class="soft-skill">Teamwork</div>
+        <div class="soft-skill">Self-Motivation</div>
+        <div class="soft-skill">Quick Learner</div>
+      </div>
+
+      <div>
+        <div class="section-head">Career Focus</div>
+        <div class="interest-tags">
+          <span class="itag">DevOps</span>
+        </div>
+        <div class="footer-note">Actively building skills toward a professional career in DevOps.</div>
+      </div>
+
+    </section>
 
   </main>
 
